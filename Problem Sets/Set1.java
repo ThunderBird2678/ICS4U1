@@ -78,12 +78,12 @@ public class Set1
 
   }
 
-  public static void receipt()
+  public static void receipt() // Question 3; Receipt
   {
 
-    sc = new Scanner (System.in);
+    sc = new Scanner (System.in); // Define Scanner Object
 
-    double price;
+    double price; // Set up variables
     int quantity;
 
     System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -96,12 +96,12 @@ public class Set1
     System.out.println();
     System.out.print("                Price: ");
 
-    price = sc.nextDouble();
+    price = sc.nextDouble(); // Prompt for; recieve price
 
 
     System.out.print("               Quantity: ");
 
-    quantity = sc.nextInt();
+    quantity = sc.nextInt(); // Prompt for; recieve quantity
 
     System.out.println();
     System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -109,21 +109,22 @@ public class Set1
     System.out.println("          Here is your receipt.");
     System.out.println();
     System.out.print("            " + quantity);
-    System.out.format(" x $%.2f", price);
-    System.out.format(" = $%.2f%n", (quantity * price));
+    System.out.format(" x $%.2f", price); // outputs price, displaying 2 decimal places
+    System.out.format(" = $%.2f%n", (quantity * price)); // outputs final costs, 2 decimal places
     System.out.println();
 
 
 
   }
 
-  public static void main (String [] args){
+  public static void main (String [] args) // Main Method; Start Here
+  {
 
-    sc = new Scanner (System.in);
+    sc = new Scanner (System.in); // Define Scanner Object
 
-    int choice;
+    int choice; // Set up choice variable
 
-    do
+    do // Looping through this
     {
 
       System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -145,30 +146,30 @@ public class Set1
       System.out.println();
       System.out.print("                 Choice: ");
 
-      choice = sc.nextInt();
+      choice = sc.nextInt(); // Read user's choice
 
       if(choice == 1)
       {
 
-        interest();
+        interest(); // Question 1
 
       }
 
       else if(choice == 2)
       {
 
-        arithmetic();
+        arithmetic(); // Question 2
 
       }
 
       else if(choice == 3)
       {
 
-        receipt();
+        receipt(); // Question 3
 
       }
 
-      else if(choice != 0)
+      else if(choice != 0) // Failsafe; warns user if they've entered a command out of bounds
       {
 
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -179,11 +180,11 @@ public class Set1
       }
 
 
-    } while (choice != 0);
+    } while (choice != 0); // Terminates if choice is 0
 
     System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     System.out.println();
-    System.out.println("             Farewell, good sir.");
+    System.out.println("             Farewell, good sir."); // Termination message
     System.out.println();
     System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
