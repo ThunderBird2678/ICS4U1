@@ -21,7 +21,7 @@ public class Set1
 
     principal = sc.nextInt(); // Prompt for; recieve principal amount
 
-    System.out.print("              Interest Rate (%) :");
+    System.out.print("              Interest Rate (%): ");
 
     interestRate = sc.nextDouble(); // Prompt for; recieve interest rate
 
@@ -72,7 +72,7 @@ public class Set1
 
     double divAnswer = (double)operand1 / (double)operand2; // Utilizing floating point accuracy for division
 
-    System.out.println("                 " + operand1 + " / " + operand2 + " = "); // Output results
+    System.out.print("                 " + operand1 + " / " + operand2 + " = "); // Output results
     System.out.format("%.2f%n", divAnswer); // Output formatted quotient, rounded off to two decimal places
     System.out.println();
 
@@ -147,6 +147,8 @@ public class Set1
       System.out.print("                 Choice: ");
 
       choice = sc.nextInt(); // Read user's choice
+
+      System.out.println();
 
       if(choice == 1)
       {
