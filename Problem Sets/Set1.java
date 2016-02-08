@@ -1,3 +1,11 @@
+/*
+
+Problem Set 1
+Kai Huang
+8 February 2016
+
+*/
+
 import java.util.Scanner; // Import the Scanner that will be used for I/O operations
 
 public class Set1
