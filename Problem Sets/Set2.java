@@ -83,23 +83,23 @@ public class Set2
     System.out.println();
     System.out.print("                 A: ");
 
-    a = sc.nextInt();
+    a = sc.nextInt(); // Prompt for; recieve A
 
     System.out.print("                 B: ");
 
-    b = sc.nextInt();
+    b = sc.nextInt(); // Prompt for; recieve B
 
     System.out.println();
 
     System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     System.out.println();
-    System.out.println("                 " + a + "x + " + b + " = 0");
-    System.out.println("                 " + a + "x = " + (-b));
-    System.out.println("                 x = " + (-b) + "/" + a);
+    System.out.println("                 " + a + "x + " + b + " = 0"); // Output starting equation
+    System.out.println("                 " + a + "x = " + (-b)); // Move constant to other side
+    System.out.println("                 x = " + (-b) + "/" + a); // Divide constant by coeffecient
 
-    double sol = ((double)(-b) / (double)(a));
+    double sol = ((double)(-b) / (double)(a)); // Set up solution as a precise decimal value
 
-    System.out.format("                 x = %.3f%n", sol);
+    System.out.format("                 x = %.3f%n", sol); // Output solution as decimal value to 3 decimal places
     System.out.println();
 
   }
