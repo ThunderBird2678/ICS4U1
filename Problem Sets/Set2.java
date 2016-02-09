@@ -13,7 +13,7 @@ public class Set2
 
   static Scanner sc; // Initalize the Scanner for I/O
 
-  public static void pizza()
+  public static void pizza() // Question 1; Pizza
   {
 
     int numPizzas; // Set up variables
@@ -70,10 +70,10 @@ public class Set2
 
   }
 
-  public static void equation()
+  public static void equation() // Question 2; Equation
   {
 
-    int a,b;
+    int a,b; // Set up variables
 
     System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     System.out.println();
@@ -104,7 +104,7 @@ public class Set2
 
   }
 
-  public static void paycheque()
+  public static void paycheque() // Question 3; Paycheque
   {
 
     double totalhours, wage, regular, overtime; // Set up variables
