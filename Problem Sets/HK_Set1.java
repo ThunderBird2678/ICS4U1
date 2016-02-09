@@ -48,6 +48,9 @@ public class HK_Set1
 
     System.out.println();
 
+    sc.nextLine(); // Waits for keystroke before returning to menu
+    sc.nextLine(); // Catches newline from previous
+
   }
 
   public static void arithmetic() // Problem 2: Arithmetic
@@ -79,6 +82,9 @@ public class HK_Set1
     System.out.print("                 " + operand1 + " / " + operand2 + " = "); // Output results
     System.out.format("%.2f%n", divAnswer); // Output formatted quotient, rounded off to two decimal places
     System.out.println();
+
+    sc.nextLine(); // Waits for keystroke before returning to menu
+    sc.nextLine(); // Catches newline from previous
 
   }
 
@@ -115,7 +121,8 @@ public class HK_Set1
     System.out.format(" = $%.2f%n", (quantity * price)); // outputs final costs, 2 decimal places
     System.out.println();
 
-
+    sc.nextLine(); // Waits for keystroke before returning to menu
+    sc.nextLine(); // Catches newline from previous
 
   }
 

@@ -67,6 +67,8 @@ public class HK_Set2
 
     }
 
+    sc.nextLine(); // Waits for keystroke before returning to menu
+
 
   }
 
@@ -126,6 +128,9 @@ public class HK_Set2
 
     }
 
+    sc.nextLine(); // Waits for keystroke before returning to menu
+    sc.nextLine(); // Catches newline from previous
+
   }
 
   public static void paycheque() // Question 3; Paycheque
@@ -159,6 +164,8 @@ public class HK_Set2
     System.out.format("              Total Pay: $%.2f%n", (regular + overtime)); // Output total pay (two decimal places)
     System.out.println();
 
+    sc.nextLine(); // Waits for keystroke before returning to menu
+    sc.nextLine(); // Catches newline from previous
 
   }
 
