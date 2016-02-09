@@ -104,6 +104,40 @@ public class Set2
 
   }
 
+  public static void paycheque()
+  {
+
+    double totalhours, wage, regular, overtime; // Set up variables
+
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    System.out.println("         Welcome to the Paycheque program!");
+    System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    System.out.print("             Hourly Wage: ");
+
+    wage = sc.nextDouble(); // Prompt for; recieve wage
+
+    System.out.print("               Hours Worked: ");
+
+    totalhours = sc.nextDouble(); // Prompt for; recieve hours
+
+    System.out.println();
+
+    regular = (totalhours < 40) ? (totalhours * wage) : (40 * wage); // Determine amount of regular hours (from comparing total with 40; maxes out at 40) and calculate wage
+    overtime = (totalhours < 40) ? 0 : (totalhours - 40) * (1.5 * wage); // Determine amount of overtime hours (same method as above; calculated as total - 40) and calculate wage
+
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    System.out.format("             Regular Pay: $%.2f%n", (regular)); // Output regular pay (two decimal places)
+    System.out.format("            Overtime Pay: $%.2f%n", (overtime)); // Output overtime pay (two decimal places)
+    System.out.format("              Total Pay: $%.2f%n", (regular + overtime)); // Output total pay (two decimal places)
+    System.out.println();
+
+
+  }
+
   public static void main (String [] args)
   {
 
@@ -154,7 +188,7 @@ public class Set2
       else if(choice == 3)
       {
 
-        // paycheque(); // Question 3
+        paycheque(); // Question 3
 
       }
 
