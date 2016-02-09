@@ -8,7 +8,7 @@ Kai Huang
 
 import java.util.Scanner; // Import the Scanner that will be used for I/O operations
 
-public class Set1
+public class HK_Set1
 {
 
   static Scanner sc; // Initialize the Scanner

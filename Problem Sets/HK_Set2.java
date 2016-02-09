@@ -8,7 +8,7 @@ Kai Huang
 
 import java.util.Scanner;
 
-public class Set2
+public class HK_Set2
 {
 
   static Scanner sc; // Initalize the Scanner for I/O
