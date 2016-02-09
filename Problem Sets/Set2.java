@@ -70,6 +70,40 @@ public class Set2
 
   }
 
+  public static void equation()
+  {
+
+    int a,b;
+
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    System.out.println("         Welcome to the Equation program!");
+    System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    System.out.print("                 A: ");
+
+    a = sc.nextInt();
+
+    System.out.print("                 B: ");
+
+    b = sc.nextInt();
+
+    System.out.println();
+
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    System.out.println("                 " + a + "x + " + b + " = 0");
+    System.out.println("                 " + a + "x = " + (-b));
+    System.out.println("                 x = " + (-b) + "/" + a);
+
+    double sol = ((double)(-b) / (double)(a));
+
+    System.out.format("                 x = %.3f%n", sol);
+    System.out.println();
+
+  }
+
   public static void main (String [] args)
   {
 
@@ -113,7 +147,7 @@ public class Set2
       else if(choice == 2)
       {
 
-        // equation(); // Question 2
+        equation(); // Question 2
 
       }
 
