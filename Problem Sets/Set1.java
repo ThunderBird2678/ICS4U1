@@ -16,8 +16,6 @@ public class Set1
   public static void interest() // Problem 1: Interest
   {
 
-    sc = new Scanner (System.in); // Define the Scanner object
-
     int principal; // Set up variables
     double interestRate;
 
@@ -55,8 +53,6 @@ public class Set1
   public static void arithmetic() // Problem 2: Arithmetic
   {
 
-    sc = new Scanner (System.in); // Define Scanner Object
-
     int operand1, operand2; // Set up variables
 
     System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -89,8 +85,6 @@ public class Set1
   public static void receipt() // Question 3; Receipt
   {
 
-    sc = new Scanner (System.in); // Define Scanner Object
-
     double price; // Set up variables
     int quantity;
 
@@ -102,7 +96,7 @@ public class Set1
     System.out.println();
     System.out.println("           Enter Item Information:");
     System.out.println();
-    System.out.print("                Price: ");
+    System.out.print("              Price ($): ");
 
     price = sc.nextDouble(); // Prompt for; recieve price
 

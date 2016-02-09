@@ -141,7 +141,7 @@ public class Set2
   public static void main (String [] args)
   {
 
-    sc = new Scanner (System.in);
+    sc = new Scanner (System.in); // Define Scanner Object
 
     int choice; // Set up choice variable
 
