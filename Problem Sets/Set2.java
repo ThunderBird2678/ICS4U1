@@ -70,6 +70,40 @@ public class Set2
 
   }
 
+  public static void equation()
+  {
+
+    int a,b;
+
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    System.out.println("         Welcome to the Equation program!");
+    System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    System.out.print("                 A: ");
+
+    a = sc.nextInt(); // Prompt for; recieve A
+
+    System.out.print("                 B: ");
+
+    b = sc.nextInt(); // Prompt for; recieve B
+
+    System.out.println();
+
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    System.out.println("                 " + a + "x + " + b + " = 0"); // Output starting equation
+    System.out.println("                 " + a + "x = " + (-b)); // Move constant to other side
+    System.out.println("                 x = " + (-b) + "/" + a); // Divide constant by coeffecient
+
+    double sol = ((double)(-b) / (double)(a)); // Set up solution as a precise decimal value
+
+    System.out.format("                 x = %.3f%n", sol); // Output solution as decimal value to 3 decimal places
+    System.out.println();
+
+  }
+
   public static void main (String [] args)
   {
 
@@ -113,7 +147,7 @@ public class Set2
       else if(choice == 2)
       {
 
-        // equation(); // Question 2
+        equation(); // Question 2
 
       }
 
