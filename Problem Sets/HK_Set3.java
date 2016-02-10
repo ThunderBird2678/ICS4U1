@@ -13,6 +13,60 @@ public class HK_Set3
 
   static Scanner sc; // Initalize the scanner Object
 
+  public static void spacing( String printed )
+  {
+
+    if(printed.length() > 72)
+    {
+
+      System.out.println(printed);
+
+
+    }
+
+    else
+    {
+
+      for(int i = 0; i < (72 - printed.length())/2; i++)
+      {
+
+        System.out.print(" ");
+
+      }
+
+      System.out.println(printed);
+
+    }
+
+  }
+
+  public static void spacing( String printed, int length )
+  {
+
+    if((printed.length() + length) > 72)
+    {
+
+      System.out.println(printed);
+
+
+    }
+
+    else
+    {
+
+      for(int i = 0; i < (72 - printed.length() - length)/2; i++)
+      {
+
+        System.out.print(" ");
+
+      }
+
+      System.out.print(printed);
+
+    }
+
+  }
+
   public static void product() // Problem 1; Product
   {
 
@@ -21,76 +75,108 @@ public class HK_Set3
 
     System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     System.out.println();
-    System.out.println("                     Welcome to the Product program!");
+    spacing("Welcome to the Product program!");
     System.out.println();
     System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     System.out.println();
-    System.out.print("                    How many numbers to process? : ");
+    spacing("How many numbers to process? : ", 1);
 
     numInputs = sc.nextInt(); // Prompt for, recieve amount of numbers
 
-    int [] inputs = new int [numInputs]; // Use an array to store the inputs
-
-    for(int i = 0; i < inputs.length; i++) // Fill array by default with 1, so multiplication has no effect on empty values
+    if(numInputs < 1) // If number if inputs is invalid, return error message
     {
-
-      inputs [i] = 1;
-
-    }
-
-    System.out.println();
-    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    System.out.println();
-    System.out.println("                         Enter " + numInputs + " positive integers"); // Prompt for some number of positive integers
-    System.out.println();
-
-    for(int i = 0; i < inputs.length; i++) // Iterate through array, asking for each value
-    {
-
-      temp = 1; // Just to be safe, reinitalize this variable after each run
 
       System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
       System.out.println();
-      System.out.print("                                  #" + (i + 1) + ": ");
-
-      temp = sc.nextInt(); // Prompt for the number
+      spacing("ERROR: cannot process " + numInputs + " numbers.");
       System.out.println();
 
-      if(temp < 1) // If the number is either 0 or negative, then it's not counted
+
+    }
+
+    else{
+
+      boolean valid = false; // if this is false, then tell the user that he didn't enter anything valid
+
+      int [] inputs = new int [numInputs]; // Use an array to store the inputs
+
+      for(int i = 0; i < inputs.length; i++) // Fill array by default with 1, so multiplication has no effect on empty values
+      {
+
+        inputs [i] = 1;
+
+      }
+
+      System.out.println();
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      System.out.println();
+      spacing("Enter " + numInputs + " positive integers"); // Prompt for some number of positive integers
+      System.out.println();
+
+      for(int i = 0; i < inputs.length; i++) // Iterate through array, asking for each value
+      {
+
+        temp = 1; // Just to be safe, reinitalize this variable after each run
+
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing("#" + (i + 1) + ": ", 1);
+
+        temp = sc.nextInt(); // Prompt for the number
+        System.out.println();
+
+        if(temp < 1) // If the number is either 0 or negative, then it's not counted
+        {
+
+          System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+          System.out.println();
+          spacing( temp + " was not counted.");
+          System.out.println();
+
+        }
+
+        else // Otherwise, the number is counted
+        {
+
+          System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+          System.out.println();
+          spacing( temp + " was counted.");
+          System.out.println();
+
+          inputs[i] = temp; // Number is added to the array for further processing
+          valid = true;
+
+        }
+
+      }
+
+      for(int i = 0; i < inputs.length; i++) // Iterate through the array, multiply values into final result
+      {
+
+        res *= inputs[i];
+
+      }
+
+      if(valid == false)
       {
 
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println();
-        System.out.println("                           " + temp + " was not counted.               ");
+        spacing("ERROR: You did not enter any valid numbers."); // Tell the user that they did not enter any valid numbers
         System.out.println();
 
       }
 
-      else // Otherwise, the number is counted
-      {
+      else{
 
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println();
-        System.out.println("                               " + temp + " was counted.                 ");
+        spacing("The product of the positives is " + res); // Output result
         System.out.println();
-
-        inputs[i] = temp; // Number is added to the array for further processing
 
       }
 
     }
-
-    for(int i = 0; i < inputs.length; i++) // Iterate through the array, multiply values into final result
-    {
-
-      res *= inputs[i];
-
-    }
-
-    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    System.out.println();
-    System.out.println("                   The product of the positives is " + res); // Output result
-    System.out.println();
 
   }
 
@@ -104,11 +190,11 @@ public class HK_Set3
 
     System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     System.out.println();
-    System.out.println("                      Welcome to the Factorial program!");
+    spacing("Welcome to the Factorial program!");
     System.out.println();
     System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     System.out.println();
-    System.out.print("                    Enter a non - negative integer: ");
+    spacing("Enter a non - negative integer: ", 2);
 
     input = sc.nextInt(); // Prompt for; recieve a non - negative integer
 
@@ -119,7 +205,7 @@ public class HK_Set3
 
       System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
       System.out.println();
-      System.out.println("                 ERROR: You entered a negative value");
+      spacing("ERROR: You entered a negative value");
       System.out.println();
 
     }
@@ -129,7 +215,7 @@ public class HK_Set3
 
       System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
       System.out.println();
-      System.out.println("                     The Factorial of 0 is 1.");
+      spacing("The Factorial of 0 is 1.");
       System.out.println();
 
     }
@@ -139,7 +225,7 @@ public class HK_Set3
 
       System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
       System.out.println();
-      System.out.println("           ERROR: You entered a number that is too large.");
+      spacing("ERROR: You entered a number that is too large.");
       System.out.println();
 
     }
@@ -161,29 +247,7 @@ public class HK_Set3
 
       finalresult += ("1 = " + res); // Adds number 1, ** without the multiplication symbol behind it ** and the result to finalresult
 
-      if(finalresult.length() > 72) // Checks to see if finalresult is over the length of my fancy divider (Failsafe, doesn't happen with input < 12, but I might rewrite this with a long later)
-      {
-
-        System.out.println(finalresult); // Just print it directly
-
-
-      }
-
-      else // If it's less than the length of my fancy divider
-      {
-
-        for(int i = 0; i < (72 - finalresult.length())/2; i++) // Take the diff between its length and the length of my divider over 2, to add spaces to center the final output
-        {
-
-          System.out.print(" ");
-
-
-        }
-
-        System.out.println(finalresult); // Display final output
-
-
-      }
+      spacing(finalresult);
 
       System.out.println();
 
@@ -200,19 +264,19 @@ public class HK_Set3
 
     System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     System.out.println();
-    System.out.println("                   Welcome to the Invest program!");
+    spacing("Welcome to the Invest program!");
     System.out.println();
     System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     System.out.println();
-    System.out.print("                Enter your Monthly Deposit ($): ");
+    spacing("Enter your Monthly Deposit ($): ", 6);
 
     deposit = sc.nextDouble(); // Prompt for; recieve deposit
 
-    System.out.print("             Enter your Annual Interest Rate (%): ");
+    spacing("Enter your Annual Interest Rate (%): ", 2);
 
     rate = (( sc.nextDouble() / 12) / 100); // Prompt for; recieve yearly interest (Immediately convert it to be decimal representation of monthly interest)
 
-    System.out.print("                  Enter your Term (Months): ");
+    spacing("Enter your Term (Months): ", 2);
 
     term = sc.nextInt(); // Prompt for; recieve Term
 
@@ -301,22 +365,22 @@ public class HK_Set3
 
       System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
       System.out.println();
-      System.out.println("                         Welcome to Problem Set 3");
-      System.out.println("                          Kai Huang ~ 09/02/2016");
+      spacing("Welcome to Problem Set 3");
+      spacing("Kai Huang ~ 09/02/2016");
       System.out.println();
       System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
       System.out.println();
-      System.out.println("                                 Choices");
+      spacing("Choices");
       System.out.println();
-      System.out.println("                                1: Product");
-      System.out.println("                               2: Factorial");
-      System.out.println("                                3: Invest");
+      spacing("1: Product");
+      spacing("2: Factorial");
+      spacing("3: Invest");
       System.out.println();
-      System.out.println("                                 0: Exit");
+      spacing("0: Exit");
       System.out.println();
       System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
       System.out.println();
-      System.out.print("                                  Choice: ");
+      spacing("Choice: ", 1);
 
       choice = sc.nextInt(); // Read user's choice
 
@@ -346,9 +410,9 @@ public class HK_Set3
       else if(choice != 0) // Failsafe; warns user if they've entered a command out of bounds
       {
 
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println();
-        System.out.println("          Please enter a valid command.");
+        spacing("Please enter a valid command.");
         System.out.println();
 
       }
@@ -356,11 +420,11 @@ public class HK_Set3
 
     } while (choice != 0); // Terminates if choice is 0
 
-    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     System.out.println();
-    System.out.println("             Farewell, good sir."); // Termination message
+    spacing("Farewell, good sir."); // Termination message
     System.out.println();
-    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
   }
 
