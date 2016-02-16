@@ -297,7 +297,17 @@ public class HK_Set3
       for(int j = 0; j < ( 16 - String.format("%.2f", bal).length() ); j++) // Algorithm to ensure that spacing is right - aligned based on taking length of the double as a String and subtracting that from constant blank spaces
       {
 
+        // The following are debug statements; please ignore them
+
+        //System.out.println(String.format("%.2f", bal));
+        //System.out.println(String.format("%.2f", bal));
+
+        //System.out.println("I'm in yer loop");
+        //System.out.println("J is: " + j);
+        //System.out.println("There should be " + (String.format("%.2f", bal).length() + 4) + " spaces.");
+
         System.out.print(" "); // For spacing purposes
+
 
       }
 
@@ -310,6 +320,7 @@ public class HK_Set3
 
         System.out.print(" ");
 
+
       }
 
       System.out.format("$%.2f", earn); // Output earnings
@@ -318,6 +329,7 @@ public class HK_Set3
       {
 
         System.out.print(" ");
+
 
       }
 
@@ -329,6 +341,7 @@ public class HK_Set3
       {
 
         System.out.print(" ");
+
 
       }
 
