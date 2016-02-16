@@ -67,6 +67,97 @@ public class HK_Set4
 
   }
 
+  public static void invest2() // Problem 3; Invest
+  {
+
+    double rate, earn, deposit, target; // Set up variables
+    double bal = 0;
+
+    int counter = 0;
+
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("Welcome to the Invest2 program!");
+    System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("Enter your Monthly Deposit ($): ", 3);
+
+    deposit = sc.nextDouble(); // Prompt for; recieve deposit
+
+    spacing("Enter your Annual Interest Rate (%): ", 2);
+
+    rate = (( sc.nextDouble() / 12) / 100); // Prompt for; recieve yearly interest (Immediately convert it to be decimal representation of monthly interest)
+
+    spacing("Enter your Target Value: ", 4);
+
+    target = sc.nextDouble(); // Prompt for; recieve target value
+
+    // Set up output chart
+
+    System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    System.out.println("        Starting         Interest         Monthly         Ending");
+    System.out.println("        Balance           Earned          Deposit         Balance ");
+    System.out.println();
+    System.out.println("        ---------------------------------------------------------");
+    System.out.println();
+
+    while(bal <= target) // Looping until we end up at our desired final value
+    {
+
+      counter += 1; // Increment the counter; keep track of how many months have passed
+
+      for(int j = 0; j < ( 16 - String.format("%.2f", bal).length() ); j++) // Algorithm to ensure that spacing is right - aligned based on taking length of the double as a String and subtracting that from constant blank spaces
+      {
+
+        System.out.print(" "); // For spacing purposes
+
+      }
+
+      System.out.format("%.2f", bal); // Output balance (1)
+
+      earn = (rate * bal); // Calculate earnings
+
+      for(int j = 0; j < ( 16 - String.format("%.2f", earn).length() ); j++) // Same algorithm as above
+      {
+
+        System.out.print(" ");
+
+      }
+
+      System.out.format("$%.2f", earn); // Output earnings
+
+      for(int j = 0; j < ( 15 - String.format("%.2f", deposit).length() ); j++) // Same algorithm as above
+      {
+
+        System.out.print(" ");
+
+      }
+
+      System.out.format("$%.2f", deposit); // Output deposit
+
+      bal += (deposit + earn); // Calculate final balance
+
+      for(int j = 0; j < ( 15 - String.format("%.2f", bal).length() ); j++) // Same algorithm as above
+      {
+
+        System.out.print(" ");
+
+      }
+
+      System.out.format("$%.2f%n", bal); // Output balance (2)
+      System.out.println();
+
+    }
+
+    spacing("It took " + counter + " months to reach your target."); // Output number of months it took to reach the target value
+    System.out.println();
+
+
+  }
+
   public static void main (String [] args)
   {
 
@@ -103,7 +194,7 @@ public class HK_Set4
       if(choice == 1)
       {
 
-        //invest2; // Question 1
+        invest2(); // Question 1
 
       }
 
