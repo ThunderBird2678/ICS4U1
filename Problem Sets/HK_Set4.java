@@ -256,7 +256,7 @@ public class HK_Set4
 
     char guess; // Set up variables
     boolean res = true; // Allows me to determine loop condition
-    int num, num2 = 0;
+    int num, num2 = 0, points = 0;
 
     Random rn = new Random();
 
@@ -303,6 +303,7 @@ public class HK_Set4
           {
 
             res = true; // resets this to true (probably is already, but just to be safe)
+            points += 1; // add a point
 
           }
 
@@ -314,6 +315,7 @@ public class HK_Set4
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             System.out.println();
             spacing("Whoops! The number was " + num2 + " and it's higher!"); // tells the user where they went wrong
+            spacing("You scored a total of " + points + " points!"); // displays amount of points
             System.out.println();
 
           }
@@ -328,6 +330,7 @@ public class HK_Set4
           {
 
             res = true;
+            points += 1;
 
           }
 
@@ -339,6 +342,7 @@ public class HK_Set4
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             System.out.println();
             spacing("Whoops! The number was " + num2 + " and it's lower!");
+            spacing("You scored a total of " + points + " points!");
             System.out.println();
 
           }
@@ -353,6 +357,7 @@ public class HK_Set4
           System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
           System.out.println();
           spacing("Jokes on you! The number is still " + num2 + "!");
+          spacing("You scored a total of " + points + " points!");
           System.out.println();
 
         }
