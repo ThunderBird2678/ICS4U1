@@ -68,6 +68,19 @@ public class HK_Set4
 
   }
 
+  public static void exit() // Instead of writing this at the end of every method, I'm just using this as a general one
+  {
+
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("Press any key to return to the menu."); // prompt for a keystroke
+
+    sc.nextLine(); // take any keystroke
+
+    System.out.println();
+
+  }
+
   public static void invest2() // Problem 3; Invest
   {
 
@@ -90,7 +103,7 @@ public class HK_Set4
 
     rate = (( sc.nextDouble() / 12) / 100); // Prompt for; recieve yearly interest (Immediately convert it to be decimal representation of monthly interest)
 
-    spacing("Enter your Target Value: ", 4);
+    spacing("Enter your Target Amount ($): ", 4);
 
     target = sc.nextDouble(); // Prompt for; recieve target value
 
@@ -156,6 +169,8 @@ public class HK_Set4
     spacing("It took " + counter + " months to reach your target."); // Output number of months it took to reach the target value
     System.out.println();
 
+    sc.nextLine(); // Clear buffer after reading earlier Double
+    exit();
 
   }
 
@@ -187,7 +202,7 @@ public class HK_Set4
 
       spacing("Month #" + counter); // output iteration number (in this case, the month)
       System.out.println();
-      spacing("Deposits: ", 3);
+      spacing("Deposits ($): ", 3);
 
       dep = sc.nextDouble(); // prompt for, recieve deposit
 
@@ -199,7 +214,7 @@ public class HK_Set4
 
       }
 
-      spacing("Withdrawls: ", 3);
+      spacing("Withdrawls ($): ", 3);
 
       with = sc.nextDouble(); // prompt for, recieve withdrawl
 
@@ -231,16 +246,21 @@ public class HK_Set4
 
     }
 
+    sc.nextLine(); // Clear buffer after reading previous double
+    exit();
+
   }
 
   public static void hiLo()
   {
 
     char guess; // Set up variables
-    boolean res; // Allows me to determine loop condition
+    boolean res = true; // Allows me to determine loop condition
     int num, num2 = 0;
 
     Random rn = new Random();
+
+    num = rn.nextInt(100) + 1; // generates random number from 1 to 100
 
     System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     System.out.println();
@@ -252,8 +272,6 @@ public class HK_Set4
 
       System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
       System.out.println();
-
-      num = rn.nextInt(100) + 1; // generates random number from 1 to 100
 
       spacing("The number is " + num + "."); // outputs current number
       System.out.println();
@@ -344,6 +362,8 @@ public class HK_Set4
       num = num2; // sets the active number to be the newly generated one
 
     }
+
+    exit();
 
   }
 
