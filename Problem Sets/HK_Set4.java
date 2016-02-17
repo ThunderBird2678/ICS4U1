@@ -158,6 +158,80 @@ public class HK_Set4
 
   }
 
+  public static void bankAccount()
+  {
+
+    int counter = 0; // Set up variables
+    double bal, with;
+    double dep = 0;
+
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("Welcome to the Bank Account Program!");
+    System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("Enter your Starting Balance ($): ", 4);
+
+    bal = sc.nextDouble(); // Prompt for, recieve starting balance
+
+    System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+
+    while(bal > 0) // as long as the balance isn't below 0
+    {
+
+      counter += 1; // increment the counter to keep track of the iterations
+
+      spacing("Month #" + counter); // output iteration number (in this case, the month)
+      System.out.println();
+      spacing("Deposits: ", 3);
+
+      dep = sc.nextDouble(); // prompt for, recieve deposit
+
+      if(dep == -1) // if the deposit happens to be -1
+      {
+
+        System.out.println();
+        break; // break out of the loop immediately (so as to not execute the next portions of the code)
+
+      }
+
+      spacing("Withdrawls: ", 3);
+
+      with = sc.nextDouble(); // prompt for, recieve withdrawl
+
+      bal += dep; // add the deposit to the balance
+      bal -= with; // subtract the withdrawl from the balance
+
+      System.out.println();
+
+    }
+
+    if(bal > 0) // if the loop ended due to the break statement
+    {
+
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      System.out.println();
+      spacing("You have $" + String.format("%.2f", bal) + " left."); // output the remaining money
+      System.out.println();
+
+    }
+
+    else // if the loop ended because the balance fell below 0
+    {
+
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      System.out.println();
+      spacing("You have run out of money!"); // casually reminds the user that they're now bankrupt
+      spacing("You are $" + (String.format("%.2f", -bal)) + " in debt!"); // conveinently also makes them aware of how much money they owe the bank
+      System.out.println();
+
+    }
+
+  }
+
   public static void main (String [] args)
   {
 
@@ -201,7 +275,7 @@ public class HK_Set4
       else if(choice == 2)
       {
 
-        //bankAccount(); // Question 2
+        bankAccount(); // Question 2
 
       }
 
