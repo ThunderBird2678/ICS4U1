@@ -7,6 +7,7 @@ Kai Huang
 */
 
 import java.util.Scanner; // Import Scanner libraries
+import java.util.Random; // Import Random libraries
 
 public class HK_Set4
 {
@@ -232,6 +233,120 @@ public class HK_Set4
 
   }
 
+  public static void hiLo()
+  {
+
+    char guess; // Set up variables
+    boolean res; // Allows me to determine loop condition
+    int num, num2 = 0;
+
+    Random rn = new Random();
+
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("Welcome to the Hi / Lo Program!");
+    System.out.println();
+
+    while(res == true) // so long as the guess is correct
+    {
+
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      System.out.println();
+
+      num = rn.nextInt(100) + 1; // generates random number from 1 to 100
+
+      spacing("The number is " + num + "."); // outputs current number
+      System.out.println();
+
+      spacing("Is the next one higher or lower? (Enter h/l): ", 1);
+
+      guess = sc.nextLine().charAt(0); // prompt for, recieve guess
+
+      System.out.println();
+
+      if(guess != 'h' && guess != 'l' && guess != 'H' && guess != 'L') // if the guess is invalid, make the user redo
+      {
+
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing(guess + " is not a valid response. Please try again.");
+
+      }
+
+      else // so long as the guess is valid
+      {
+
+        num2 = rn.nextInt(100) + 1; // generate the second random number
+
+        if(num2 > num) // if the number is higher
+        {
+
+          if(guess == 'h' || guess == 'H') // correct if the user guessed as such
+          {
+
+            res = true; // resets this to true (probably is already, but just to be safe)
+
+          }
+
+          else // otherwise, the user is incorrect
+          {
+
+            res = false; // sets the condition to false so the loop terminates
+
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            System.out.println();
+            spacing("Whoops! The number was " + num2 + " and it's higher!"); // tells the user where they went wrong
+            System.out.println();
+
+          }
+
+
+        }
+
+        else if(num2 < num) // precisely the vice versa scenario of the above statement, refer to those comments
+        {
+
+          if (guess == 'l' || guess == 'L')
+          {
+
+            res = true;
+
+          }
+
+          else
+          {
+
+            res = false;
+
+            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+            System.out.println();
+            spacing("Whoops! The number was " + num2 + " and it's lower!");
+            System.out.println();
+
+          }
+
+        }
+
+        else
+        {
+
+          res = false;
+
+          System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+          System.out.println();
+          spacing("Jokes on you! The number is still " + num2 + "!");
+          System.out.println();
+
+        }
+
+      }
+
+      num = num2; // sets the active number to be the newly generated one
+
+    }
+
+  }
+
   public static void main (String [] args)
   {
 
@@ -263,6 +378,8 @@ public class HK_Set4
 
       choice = sc.nextInt(); // Read user's choice
 
+      sc.nextLine();
+
       System.out.println();
 
       if(choice == 1)
@@ -282,7 +399,7 @@ public class HK_Set4
       else if(choice == 3)
       {
 
-        //hiLo(); // Question 3
+        hiLo(); // Question 3
 
       }
 
