@@ -103,6 +103,20 @@ public class HK_Set4
 
     rate = (( sc.nextDouble() / 12) / 100); // Prompt for; recieve yearly interest (Immediately convert it to be decimal representation of monthly interest)
 
+    while(rate < 0)
+    {
+
+      System.out.println();
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      spacing("Your interest rate cannot be below zero. Please try again.");
+      System.out.println();
+      spacing("Enter your Annual Interest Rate (%): ", 2);
+
+      rate = (( sc.nextDouble() / 12) / 100);
+
+
+    }
+
     spacing("Enter your Target Amount ($): ", 4);
 
     target = sc.nextDouble(); // Prompt for; recieve target value
@@ -110,15 +124,21 @@ public class HK_Set4
     // Set up output chart
 
     System.out.println();
-    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    System.out.println();
-    System.out.println("        Starting         Interest         Monthly         Ending");
-    System.out.println("        Balance           Earned          Deposit         Balance ");
-    System.out.println();
-    System.out.println("        ---------------------------------------------------------");
-    System.out.println();
 
-    while(bal <= target) // Looping until we end up at our desired final value
+    if(target > 0)
+    {
+
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      System.out.println();
+      System.out.println("        Starting         Interest         Monthly         Ending");
+      System.out.println("        Balance           Earned          Deposit         Balance ");
+      System.out.println();
+      System.out.println("        ---------------------------------------------------------");
+      System.out.println();
+
+    }
+
+    while(bal <= target && target > 0) // Looping until we end up at our desired final value or just exit if the target is negative anyway
     {
 
       counter += 1; // Increment the counter; keep track of how many months have passed
@@ -166,7 +186,30 @@ public class HK_Set4
 
     }
 
-    spacing("It took " + counter + " months to reach your target."); // Output number of months it took to reach the target value
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+
+    if(counter == 0)
+    {
+
+      spacing("Your target was negative, so it was valid from the start.");
+
+    }
+
+    else if(counter == 1)
+    {
+
+      spacing("It took " + counter + " month to reach your target.");
+
+    }
+
+    else
+    {
+
+      spacing("It took " + counter + " month(s) to reach your target."); // Output number of months it took to reach the target value
+
+    }
+
     System.out.println();
 
     sc.nextLine(); // Clear buffer after reading earlier Double
@@ -214,7 +257,7 @@ public class HK_Set4
 
       }
 
-      spacing("Withdrawls ($): ", 3);
+      spacing("withdrawls ($): ", 3);
 
       with = sc.nextDouble(); // prompt for, recieve withdrawl
 
@@ -298,12 +341,12 @@ public class HK_Set4
 
         guess = input.charAt(0); // Take the guess as the first character of their string
 
-        if(guess != 'h' && guess != 'l' && guess != 'H' && guess != 'L') // if the guess is invalid, make the user redo
+        if(guess != 'h' && guess != 'l' && guess != 'H' && guess != 'L' || input.length() > 1) // if the guess is invalid, make the user redo
         {
 
           System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
           System.out.println();
-          spacing(guess + " is not a valid response. Please try again.");
+          spacing(input + " is not a valid response. Please try again.");
           System.out.println();
 
         }
@@ -379,7 +422,7 @@ public class HK_Set4
             System.out.println();
 
           }
-          
+
           num = num2; // sets the active number to be the newly generated one
 
         }
