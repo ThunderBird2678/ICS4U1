@@ -255,6 +255,7 @@ public class HK_Set4
   {
 
     char guess; // Set up variables
+    String input; // So I can check for validity
     boolean res = true; // Allows me to determine loop condition
     int num, num2 = 0, points = 0;
 
@@ -278,59 +279,91 @@ public class HK_Set4
 
       spacing("Is the next one higher or lower? (Enter h/l): ", 1);
 
-      guess = sc.nextLine().charAt(0); // prompt for, recieve guess
+      input = sc.nextLine(); // prompt for, recieve guess
 
       System.out.println();
 
-      if(guess != 'h' && guess != 'l' && guess != 'H' && guess != 'L') // if the guess is invalid, make the user redo
+      if(input.length() == 0) // in this case, the user hasn't entered anything and so the program will hit a runtime error (index null)
       {
 
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println();
-        spacing(guess + " is not a valid response. Please try again.");
+        spacing("You did not enter a response. Please try again."); // Prompts for a retry
+        System.out.println();
 
       }
 
-      else // so long as the guess is valid
+      else // so long as I can recieve their guess
       {
 
-        num2 = rn.nextInt(100) + 1; // generate the second random number
+        guess = input.charAt(0); // Take the guess as the first character of their string
 
-        if(num2 > num) // if the number is higher
+        if(guess != 'h' && guess != 'l' && guess != 'H' && guess != 'L') // if the guess is invalid, make the user redo
         {
 
-          if(guess == 'h' || guess == 'H') // correct if the user guessed as such
-          {
-
-            res = true; // resets this to true (probably is already, but just to be safe)
-            points += 1; // add a point
-
-          }
-
-          else // otherwise, the user is incorrect
-          {
-
-            res = false; // sets the condition to false so the loop terminates
-
-            System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-            System.out.println();
-            spacing("Whoops! The number was " + num2 + " and it's higher!"); // tells the user where they went wrong
-            spacing("You scored a total of " + points + " points!"); // displays amount of points
-            System.out.println();
-
-          }
-
+          System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+          System.out.println();
+          spacing(guess + " is not a valid response. Please try again.");
+          System.out.println();
 
         }
 
-        else if(num2 < num) // precisely the vice versa scenario of the above statement, refer to those comments
+
+        else
         {
 
-          if (guess == 'l' || guess == 'L')
+          num2 = rn.nextInt(100) + 1; // generate the second random number
+
+          if(num2 > num) // if the number is higher
           {
 
-            res = true;
-            points += 1;
+            if(guess == 'h' || guess == 'H') // correct if the user guessed as such
+            {
+
+              res = true; // resets this to true (probably is already, but just to be safe)
+              points += 1; // add a point
+
+            }
+
+            else // otherwise, the user is incorrect
+            {
+
+              res = false; // sets the condition to false so the loop terminates
+
+              System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+              System.out.println();
+              spacing("Whoops! The number was " + num2 + " and it's higher!"); // tells the user where they went wrong
+              spacing("You scored a total of " + points + " points!"); // displays amount of points
+              System.out.println();
+
+            }
+
+
+          }
+
+          else if(num2 < num) // precisely the vice versa scenario of the above statement, refer to those comments
+          {
+
+            if (guess == 'l' || guess == 'L')
+            {
+
+              res = true;
+              points += 1;
+
+            }
+
+            else
+            {
+
+              res = false;
+
+              System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+              System.out.println();
+              spacing("Whoops! The number was " + num2 + " and it's lower!");
+              spacing("You scored a total of " + points + " points!");
+              System.out.println();
+
+            }
 
           }
 
@@ -341,30 +374,17 @@ public class HK_Set4
 
             System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
             System.out.println();
-            spacing("Whoops! The number was " + num2 + " and it's lower!");
+            spacing("Jokes on you! The number is still " + num2 + "!");
             spacing("You scored a total of " + points + " points!");
             System.out.println();
 
           }
-
-        }
-
-        else
-        {
-
-          res = false;
-
-          System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-          System.out.println();
-          spacing("Jokes on you! The number is still " + num2 + "!");
-          spacing("You scored a total of " + points + " points!");
-          System.out.println();
+          
+          num = num2; // sets the active number to be the newly generated one
 
         }
 
       }
-
-      num = num2; // sets the active number to be the newly generated one
 
     }
 
