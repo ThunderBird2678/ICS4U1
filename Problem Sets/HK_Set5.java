@@ -6,12 +6,14 @@ Kai Huang
 
 */
 
-import java.util.Scanner;
+import java.util.*;
+import java.lang.Math;
 
 public class HK_Set5
 {
 
   static Scanner sc; // Initalize the scanner Object
+  static Random rn; // Initalize the Random Object
 
   public static void spacing( String printed ) // Custom method written in order to center - align output)
   {
@@ -104,10 +106,23 @@ public class HK_Set5
 
   }
 
+  public static int getRandom(int r1, int r2)
+  {
+
+    int n2 = Math.max(r1, r2);
+    int n1 = Math.min(r1, r2);
+
+    int randomNum = rn.nextInt(n2 - n1) + n1 + 1;
+
+    return randomNum;
+
+  }
+
   public static void main (String [] args)
   {
 
     sc = new Scanner (System.in); // Define Scanner Object
+    rn = new Random();
 
     int choice; // Set up choice variable
 
@@ -139,8 +154,11 @@ public class HK_Set5
       {
 
         sc.nextLine();
-        String test = sc.nextLine();
-        title(test);
+        int test1 = sc.nextInt();
+        int test2 = sc.nextInt();
+        int output = getRandom(test1, test2);
+        System.out.println();
+        spacing("Output: " + output);
 
       }
 
