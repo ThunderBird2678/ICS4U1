@@ -252,6 +252,33 @@ public class HK_Set5
 
   }
 
+  public static int lcm(int n1, int n2)
+  {
+
+    int temp = n1;
+
+    if(n1 < 1 || n2 < 1)
+    {
+
+      return 0;
+
+    }
+
+    else
+    {
+
+      while(n1 % n2 != 0)
+      {
+
+        n1 += temp;
+
+      }
+
+      return n1;
+    }
+
+  }
+
   public static void main (String [] args)
   {
 
@@ -287,13 +314,13 @@ public class HK_Set5
       if(choice == 1)
       {
 
-        sc.nextLine();
-
-        String test1 = sc.nextLine();
-
-        char output = readChar(test1);
+        spacing(" ", 1);
+        int t1 = sc.nextInt();
         System.out.println();
-        spacing("Output: " + output);
+        spacing(" ", 1);
+        int t2 = sc.nextInt();
+        System.out.println();
+        spacing("Output: " + lcm(t1, t2));
 
       }
 
