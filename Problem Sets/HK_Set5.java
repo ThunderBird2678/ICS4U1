@@ -172,6 +172,86 @@ public class HK_Set5
 
   }
 
+  public static char readChar(String validList)
+  {
+
+    char read;
+    char vals[] = new char[validList.length()];
+    String show = "";
+
+    for(int i = 0; i < validList.length(); i ++)
+    {
+
+      vals[i] = validList.charAt(i);
+
+    }
+
+    for(int i = 0; i < validList.length(); i++)
+    {
+
+      show += (vals[i] + ", ");
+
+    }
+
+    System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("Valid Characters: " + show + ".");
+    System.out.println();
+    spacing("Enter a valid character: ", 1);
+
+    read = sc.nextLine().charAt(0);
+
+    boolean res = false;
+
+    System.out.println();
+
+    for(int i = 0; i < vals.length; i++)
+    {
+
+      if(read == vals[i])
+      {
+
+        res = true;
+
+      }
+
+    }
+
+    while(res == false)
+    {
+
+      System.out.println();
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      System.out.println();
+      spacing("The character was not part of the valid list");
+      System.out.println();
+      spacing("Please try again.");
+      System.out.println();
+      spacing("Enter a valid character: ", 1);
+
+      read = sc.nextLine().charAt(0);
+
+      for(int i = 0; i < vals.length; i++)
+      {
+
+        if(read == vals[i])
+        {
+
+          res = true;
+
+        }
+
+      }
+
+      System.out.println();
+
+    }
+
+    return read;
+
+  }
+
   public static void main (String [] args)
   {
 
@@ -209,11 +289,9 @@ public class HK_Set5
 
         sc.nextLine();
 
-        char test1 = sc.nextLine().charAt(0);
+        String test1 = sc.nextLine();
 
-        char test2 = sc.nextLine().charAt(0);
-
-        char output = readChar(test1, test2);
+        char output = readChar(test1);
         System.out.println();
         spacing("Output: " + output);
 
