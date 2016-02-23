@@ -139,16 +139,16 @@ public class HK_Set5
 
     }
 
-    System.out.println();
-    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    System.out.println();
-    spacing("The range specified is from " + ch1 + " to " + ch2 + ".");
-    System.out.println();
-    spacing("Enter a character in the range: ", 1);
+    //System.out.println();
+    //System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    //System.out.println();
+    //spacing("The range specified is from " + ch1 + " to " + ch2 + ".");
+    //System.out.println();
+    //spacing("Enter a character in the range: ", 1);
 
     read = sc.nextLine().charAt(0);
 
-    System.out.println();
+    //System.out.println();
 
     while(ch1 > read || ch2 < read)
     {
@@ -193,18 +193,18 @@ public class HK_Set5
 
     }
 
-    System.out.println();
-    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    System.out.println();
-    spacing("Valid Characters: " + show + ".");
-    System.out.println();
-    spacing("Enter a valid character: ", 1);
+    //System.out.println();
+    //System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    //System.out.println();
+    //spacing("Valid Characters: " + show + ".");
+    //System.out.println();
+    //spacing("Enter a valid character: ", 1);
 
     read = sc.nextLine().charAt(0);
 
     boolean res = false;
 
-    System.out.println();
+    //System.out.println();
 
     for(int i = 0; i < vals.length; i++)
     {
@@ -279,6 +279,46 @@ public class HK_Set5
 
   }
 
+  public static void theLcmMachine()
+  {
+
+    int numPairs;
+    int pairs[];
+
+    title("The LCM Machine");
+
+    System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("How many pairs of numbers would you like to process?");
+    System.out.println();
+    spacing("Pairs (1 - 9): ", 1);
+
+    char lBound = (char)(1 + 48);
+    char hBound = (char)(9 + 48);
+
+    sc.nextLine();
+
+    pairs = new int[numPairs = readChar(lBound,hBound)];
+
+    for(int i = 0; i < pairs.length; i++)
+    {
+
+      pairs[0] = getRandom(1,100);
+
+    }
+
+    for(int i = 0; i < pairs.length; i++)
+    {
+
+      spacing("#" + (i+1) + ": " + pairs[i]);
+
+    }
+
+    System.out.println();
+
+  }
+
   public static void main (String [] args)
   {
 
@@ -314,13 +354,7 @@ public class HK_Set5
       if(choice == 1)
       {
 
-        spacing(" ", 1);
-        int t1 = sc.nextInt();
-        System.out.println();
-        spacing(" ", 1);
-        int t2 = sc.nextInt();
-        System.out.println();
-        spacing("Output: " + lcm(t1, t2));
+        theLcmMachine();
 
       }
 
