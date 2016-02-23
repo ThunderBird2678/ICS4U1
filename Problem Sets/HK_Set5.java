@@ -118,6 +118,60 @@ public class HK_Set5
 
   }
 
+  public static char readChar(char c1, char c2)
+  {
+
+    char ch1, ch2, read;
+
+    if(c1 > c2)
+    {
+
+      ch2 = c1;
+      ch1 = c2;
+
+    }
+
+    else
+    {
+
+      ch2 = c2;
+      ch1 = c1;
+
+    }
+
+    System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("The range specified is from " + ch1 + " to " + ch2 + ".");
+    System.out.println();
+    spacing("Enter a character in the range: ", 1);
+
+    read = sc.nextLine().charAt(0);
+
+    System.out.println();
+
+    while(ch1 > read || ch2 < read)
+    {
+
+      System.out.println();
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      System.out.println();
+      spacing("The character was not within the range " + ch1 + " to " + ch2 + ".");
+      System.out.println();
+      spacing("Please try again.");
+      System.out.println();
+      spacing("Enter a character in the range: ", 1);
+
+      read = sc.nextLine().charAt(0);
+
+      System.out.println();
+
+    }
+
+    return read;
+
+  }
+
   public static void main (String [] args)
   {
 
@@ -154,9 +208,12 @@ public class HK_Set5
       {
 
         sc.nextLine();
-        int test1 = sc.nextInt();
-        int test2 = sc.nextInt();
-        int output = getRandom(test1, test2);
+
+        char test1 = sc.nextLine().charAt(0);
+
+        char test2 = sc.nextLine().charAt(0);
+
+        char output = readChar(test1, test2);
         System.out.println();
         spacing("Output: " + output);
 
