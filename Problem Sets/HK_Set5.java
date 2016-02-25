@@ -139,16 +139,16 @@ public class HK_Set5
 
     }
 
-    System.out.println();
-    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    System.out.println();
-    spacing("The range specified is from " + ch1 + " to " + ch2 + ".");
-    System.out.println();
-    spacing("Enter a character in the range: ", 1);
+    //System.out.println();
+    //System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    //System.out.println();
+    //spacing("The range specified is from " + ch1 + " to " + ch2 + ".");
+    //System.out.println();
+    //spacing("Enter a character in the range: ", 1);
 
     read = sc.nextLine().charAt(0);
 
-    System.out.println();
+    //System.out.println();
 
     while(ch1 > read || ch2 < read)
     {
@@ -193,18 +193,18 @@ public class HK_Set5
 
     }
 
-    System.out.println();
-    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    System.out.println();
-    spacing("Valid Characters: " + show + ".");
-    System.out.println();
-    spacing("Enter a valid character: ", 1);
+    //System.out.println();
+    //System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    //System.out.println();
+    //spacing("Valid Characters: " + show + ".");
+    //System.out.println();
+    //spacing("Enter a valid character: ", 1);
 
     read = sc.nextLine().charAt(0);
 
     boolean res = false;
 
-    System.out.println();
+    //System.out.println();
 
     for(int i = 0; i < vals.length; i++)
     {
@@ -279,6 +279,132 @@ public class HK_Set5
 
   }
 
+  public static void theLcmMachine()
+  {
+
+    int numPairs;
+    int tempPairs;
+    int pairs[];
+
+    title("The LCM Machine");
+
+    System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("How many pairs of numbers would you like to process?");
+    System.out.println();
+    spacing("Pairs (1 - 9): ", 1);
+
+    tempPairs = sc.nextInt();
+
+    System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+
+    while(tempPairs < 1 || tempPairs > 9)
+    {
+
+      spacing("Error: The character you entered was not in the range.");
+      System.out.println();
+      spacing("Pairs (1 - 9): ", 1);
+
+      tempPairs = sc.nextInt();
+
+      System.out.println();
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      System.out.println();
+
+    }
+
+    numPairs = ((char)(String.valueOf(tempPairs)).charAt(0)) - 48;
+
+    int genOne[] = new int[numPairs];
+    int genTwo[] = new int[numPairs];
+
+    for(int i = 0; i < numPairs; i++)
+    {
+
+      genOne[i] = getRandom(1,100);
+      genTwo[i] = getRandom(1,100);
+
+    }
+
+    System.out.println("              Number 1          Number 2               lCM");
+    System.out.println();
+    System.out.println("              --------------------------------------------");
+    System.out.println();
+
+    for(int i = 0; i < numPairs; i++)
+    {
+
+      for(int j = 0; j < 22 - (String.valueOf(genOne[i])).length(); j++)
+      {
+
+        System.out.print(" ");
+
+      }
+
+      System.out.print(genOne[i]);
+
+      for(int j = 0; j < 18 - (String.valueOf(genTwo[i])).length(); j++)
+      {
+
+        System.out.print(" ");
+
+      }
+
+      System.out.print(genTwo[i]);
+
+      for(int j = 0; j < 18 - (String.valueOf(lcm(genOne[i], genTwo[i]))).length(); j++)
+      {
+
+        System.out.print(" ");
+
+      }
+
+      System.out.print(lcm(genOne[i], genTwo[i]));
+      System.out.println();
+
+    }
+
+    System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("Would you like to run the program again?");
+    System.out.println();
+    spacing("Enter Yes or No (Y/y/N/n): ", 1);
+
+    char repeat = sc.next().charAt(0);
+
+    System.out.println();
+
+    if(repeat != 'Y' && repeat != 'y' && repeat != 'N' && repeat != 'n')
+    {
+
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      spacing("Error: You did not enter Y/y/N/n");
+      System.out.println();
+      spacing("Please try again: ", 1);
+
+      repeat = sc.next().charAt(0);
+
+    }
+
+    else
+    {
+
+      if(repeat == 'Y' || repeat == 'y')
+      {
+
+        System.out.println();
+        theLcmMachine();
+
+      }
+
+    }
+
+  }
+
   public static void main (String [] args)
   {
 
@@ -314,13 +440,7 @@ public class HK_Set5
       if(choice == 1)
       {
 
-        spacing(" ", 1);
-        int t1 = sc.nextInt();
-        System.out.println();
-        spacing(" ", 1);
-        int t2 = sc.nextInt();
-        System.out.println();
-        spacing("Output: " + lcm(t1, t2));
+        theLcmMachine();
 
       }
 
