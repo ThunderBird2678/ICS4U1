@@ -283,6 +283,7 @@ public class HK_Set5
   {
 
     int numPairs;
+    int tempPairs;
     int pairs[];
 
     title("The LCM Machine");
@@ -294,28 +295,113 @@ public class HK_Set5
     System.out.println();
     spacing("Pairs (1 - 9): ", 1);
 
-    char lBound = (char)(1 + 48);
-    char hBound = (char)(9 + 48);
+    tempPairs = sc.nextInt();
 
-    sc.nextLine();
+    System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
 
-    pairs = new int[numPairs = readChar(lBound,hBound)];
-
-    for(int i = 0; i < pairs.length; i++)
+    while(tempPairs < 1 || tempPairs > 9)
     {
 
-      pairs[0] = getRandom(1,100);
+      spacing("Error: The character you entered was not in the range.");
+      System.out.println();
+      spacing("Pairs (1 - 9): ", 1);
+
+      tempPairs = sc.nextInt();
+
+      System.out.println();
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      System.out.println();
 
     }
 
-    for(int i = 0; i < pairs.length; i++)
+    numPairs = ((char)(String.valueOf(tempPairs)).charAt(0)) - 48;
+
+    int genOne[] = new int[numPairs];
+    int genTwo[] = new int[numPairs];
+
+    for(int i = 0; i < numPairs; i++)
     {
 
-      spacing("#" + (i+1) + ": " + pairs[i]);
+      genOne[i] = getRandom(1,100);
+      genTwo[i] = getRandom(1,100);
+
+    }
+
+    System.out.println("              Number 1          Number 2               lCM");
+    System.out.println();
+    System.out.println("              --------------------------------------------");
+    System.out.println();
+
+    for(int i = 0; i < numPairs; i++)
+    {
+
+      for(int j = 0; j < 22 - (String.valueOf(genOne[i])).length(); j++)
+      {
+
+        System.out.print(" ");
+
+      }
+
+      System.out.print(genOne[i]);
+
+      for(int j = 0; j < 18 - (String.valueOf(genTwo[i])).length(); j++)
+      {
+
+        System.out.print(" ");
+
+      }
+
+      System.out.print(genTwo[i]);
+
+      for(int j = 0; j < 18 - (String.valueOf(lcm(genOne[i], genTwo[i]))).length(); j++)
+      {
+
+        System.out.print(" ");
+
+      }
+
+      System.out.print(lcm(genOne[i], genTwo[i]));
+      System.out.println();
 
     }
 
     System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("Would you like to run the program again?");
+    System.out.println();
+    spacing("Enter Yes or No (Y/y/N/n): ", 1);
+
+    char repeat = sc.next().charAt(0);
+
+    System.out.println();
+
+    if(repeat != 'Y' && repeat != 'y' && repeat != 'N' && repeat != 'n')
+    {
+
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      spacing("Error: You did not enter Y/y/N/n");
+      System.out.println();
+      spacing("Please try again: ", 1);
+
+      repeat = sc.next().charAt(0);
+
+    }
+
+    else
+    {
+
+      if(repeat == 'Y' || repeat == 'y')
+      {
+
+        System.out.println();
+        theLcmMachine();
+
+      }
+
+    }
 
   }
 
