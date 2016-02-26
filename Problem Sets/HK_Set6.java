@@ -83,6 +83,59 @@ public class HK_Set6
 
   }
 
+  public static boolean palindrome(String inputForCheck)
+  {
+
+    int points = 0;
+    String checking, alphabet = "QWERTYUIOPASDFGHJKLZXCVBNM";
+    String mod = "";
+    boolean res = false;
+
+    checking = inputForCheck.toUpperCase();
+
+    for(int i = 0; i < checking.length(); i++)
+    {
+
+      for(int j = 0; j < alphabet.length(); j++)
+      {
+
+        if(checking.charAt(i) == alphabet.charAt(j))
+        {
+
+          mod += checking.charAt(i);
+          System.out.println("Adding " + checking.charAt(i) + " to the mod var.");
+
+        }
+
+      }
+
+    }
+
+    for(int i = 0; i < mod.length(); i++)
+    {
+
+      spacing("Comparing " + mod.charAt(i) + " to " + mod.charAt(mod.length() - (i+1)));
+
+      if(mod.charAt(i) == mod.charAt(mod.length() - (i+1)))
+      {
+
+        points += 1;
+
+      }
+
+    }
+
+    if(points == mod.length())
+    {
+
+      res = true;
+
+    }
+
+    return res;
+
+  }
+
   public static void main (String [] args)
   {
 
@@ -117,11 +170,13 @@ public class HK_Set6
 
       System.out.println();
 
+      sc.nextLine();
+
       if(choice == 1)
       {
 
-        sc.nextLine(); // clear buffer
-        theLcmMachine(); // call the program method
+        String temp = sc.nextLine();
+        spacing("" + palindrome(temp));
 
       }
 
