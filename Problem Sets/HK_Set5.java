@@ -69,6 +69,19 @@ public class HK_Set5
 
   }
 
+  public static void pause() // Allows user keystroke before returning to menu after debug
+  {
+
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("Press any key to return to the menu."); // prompt for a keystroke
+
+    sc.nextLine(); // take any keystroke
+
+    System.out.println();
+
+  }
+
   public static void title(String input) // title() method
   {
 
@@ -148,19 +161,6 @@ public class HK_Set5
 
     }
 
-    /*
-
-    Debug Statements
-
-    System.out.println();
-    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    System.out.println();
-    spacing("The range specified is from " + ch1 + " to " + ch2 + ".");
-    System.out.println();
-    spacing("Enter a character in the range: ", 1);
-
-    */
-
     read = sc.nextLine().charAt(0); // take in the input char
 
     //System.out.println();
@@ -194,43 +194,21 @@ public class HK_Set5
     char vals[] = new char[validList.length()]; // vals is a character array based off the string recieved; there's probably an internal method to do this, but w/e
     String show = "";
 
-    for(int i = 0; i < validList.length(); i ++) // looping through the list the first time
+    for(int i = 0; i < validList.length() - 1; i ++) // looping through the list the first time
     {
 
       vals[i] = validList.charAt(i); // take the characters from the string and point the array references accordingly
-      show += (vals[i] + ","); // Add the characters to a string that can be output
+      show += (vals[i] + ","); // Add the characters (apart from the past one) along with a comma to a string that can be output
 
     }
 
-    read = sc.nextLine().charAt(0); // take in the input
+    vals[vals.length - 1] = validList.charAt(vals.length - 1); // add final character to the array
+    show += vals[(vals.length) - 1]; // add final character (without comma)
 
     boolean res = false; // temporary boolean variable to control loop
 
-    for(int i = 0; i < vals.length; i++) // looping through the valid list and matching up the variable
+    do // No matter what, needs to read input and scan through array at least once
     {
-
-      if(read == vals[i]) // if the read variable matches any of the array elements, set the result to be true
-      {
-
-        res = true;
-
-      }
-
-    }
-
-    while(res == false) // so long as the condition is not met
-    {
-
-      System.out.println();
-      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-      System.out.println();
-      spacing("The character was not part of the valid list."); // Tells the user that their input wasn't valid
-      System.out.println();
-      spacing("List: " + show); // Reminds the user of what is valid
-      System.out.println();
-      spacing("Please try again.");
-      System.out.println();
-      spacing("Enter a valid character: ", 1); // Prompts for the input again
 
       read = sc.nextLine().charAt(0);
 
@@ -246,9 +224,25 @@ public class HK_Set5
 
       }
 
-      System.out.println();
+      if(res == false) // only display these error messages if res is still false.
+      {
 
-    }
+        System.out.println();
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing("The character was not part of the valid list."); // Tells the user that their input wasn't valid
+        System.out.println();
+        spacing("List: " + show); // Reminds the user of what is valid
+        System.out.println();
+        spacing("Please try again.");
+        System.out.println();
+        spacing("Enter a valid character: ", 1); // Prompts for the input again
+
+      }
+
+    } while(res == false); // so long as the condition is not met
+
+    System.out.println();
 
     return read; // return the read character
 
@@ -295,8 +289,6 @@ public class HK_Set5
     spacing("How many pairs of numbers would you like to process?"); // Prompts for some number pairs
     System.out.println();
     spacing("Pairs (1 - 9): ", 1);
-
-    // sc.nextLine(); // clear scanner buffer
 
     numPairs = readChar((char)(1+48), (char)(9+48));
 
@@ -401,6 +393,14 @@ public class HK_Set5
       System.out.println();
       spacing("1: The LCM Machine");
       System.out.println();
+      spacing("** Note: These next options are for testing only. **");
+      System.out.println();
+      spacing("2: title()");
+      spacing("3: getRandom()");
+      spacing("4: readChar(char, char)");
+      spacing("5: readChar(String)");
+      spacing("6: lcm()");
+      System.out.println();
       spacing("0: Exit");
       System.out.println();
       System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
@@ -416,6 +416,150 @@ public class HK_Set5
 
         sc.nextLine(); // clear buffer
         theLcmMachine(); // call the program method
+
+      }
+
+      else if(choice == 2) // testing title();
+      {
+
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing("Enter one parameter of type <String>: ", 15); // Prompts for parameter
+
+        sc.nextLine(); // clears buffer
+
+        String temp = sc.nextLine(); // Reads parameter
+
+        System.out.println();
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+
+        title(temp); // parameter sent to title method and displays demo
+
+        pause(); // asks for keystroke
+
+      }
+
+      else if(choice == 3)
+      {
+
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing("Enter the first parameter of type <int>: ", 2); // prompts for first parameter
+
+        sc.nextLine(); // clears buffer
+
+        int temp1 = sc.nextInt();
+
+        System.out.println();
+        spacing("Enter the second parameter of type <int>: ", 2); // prompts for second parameter
+
+        int temp2 = sc.nextInt();
+
+        System.out.println();
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+
+        spacing("The RNG grants you: " + String.valueOf(getRandom(temp1, temp2))); // outputs RNG result
+
+        System.out.println();
+
+        sc.nextLine(); // clears buffer
+
+        pause(); // asks for keystroke
+
+      }
+
+      else if(choice == 4)
+      {
+
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing("Enter the first parameter of type <char>: ", 1); // prompts for first parameter
+
+        sc.nextLine(); // clears buffer
+
+        char temp1 = sc.nextLine().charAt(0);
+
+        System.out.println();
+        spacing("Enter the second parameter of type <char>: ", 1); // prompts for second parameter
+
+        char temp2 = sc.nextLine().charAt(0);
+
+        System.out.println();
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing("Enter a character in between the prior characters: ", 1); // prompts for character input as per readChar()
+
+        char res = readChar(temp1, temp2); // executes readChar
+
+        System.out.println();
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+
+        spacing("The <char> you entered was: " + res); // outputs the result of readChar()
+
+        System.out.println();
+
+        pause(); // asks for keystroke
+
+      }
+
+      else if(choice == 5)
+      {
+
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing("Enter a parameter of type <String> : ", 6); // prompts for parameter
+
+        sc.nextLine(); // clears buffer
+
+        String temp = sc.nextLine();
+
+        System.out.println();
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing("Enter a character that was present in the prior <String>: ", 1); // prompts for character input as per readChar()
+
+        char res = readChar(temp); // executes readChar()
+
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+
+        spacing("The <char> you entered was: " + res); // outputs result from readChar()
+
+        System.out.println();
+
+        pause(); // asks for keystroke
+
+      }
+
+      else if(choice == 6)
+      {
+
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing("Enter the first parameter of type <int>: ", 2); // prompts for first parameter
+
+        sc.nextLine(); // clears buffer
+
+        int temp1 = sc.nextInt();
+
+        System.out.println();
+        spacing("Enter the second parameter of type <int>: ", 2); // prompts for second parameter
+
+        int temp2 = sc.nextInt();
+
+        System.out.println();
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+
+        spacing("The LCM is: " + String.valueOf(lcm(temp1, temp2))); // outputs result of lcm()
+
+        System.out.println();
+
+        sc.nextLine(); // clears buffer
+
+        pause(); // asks for keystroke
 
       }
 
