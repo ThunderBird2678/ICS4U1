@@ -450,7 +450,7 @@ public class HK_Set5
 
       System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
       System.out.println();
-      spacing("Welcome to Problem Set 3");
+      spacing("Welcome to Problem Set 5");
       spacing("Kai Huang ~ 09/02/2016");
       System.out.println();
       System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
