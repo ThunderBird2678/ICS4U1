@@ -69,69 +69,78 @@ public class HK_Set5
 
   }
 
-  public static void title(String input)
+  public static void title(String input) // title() method
   {
 
     System.out.println();
-    spacing("--------------------------------");
+    spacing("--------------------------------"); // Display the top border
     System.out.println();
+
+    int spaces = (28 - input.length())/2; // The amount of spaces from the side of the top border to the edges of the screen
 
     // Begin massive section to format this properly
 
-    System.out.print("                     |");
+    System.out.print("                     |"); // Displays the left border (spacing is center aligned to the top border)
 
-    for(int i = 0; i < (28-input.length())/2; i++)
+    for(int i = 0; i < spaces; i++) // 28 being the space from the left side of the screen to the beginning of the border
     {
 
-      System.out.print(" ");
+      System.out.print(" "); // Print out the spacing
 
     }
 
-    System.out.print(input);
+    System.out.print(input); // Output the actual input that's read
 
-    for(int i = 0; i < (28-input.length())/2; i++)
+    for(int i = 0; i < spaces; i++) // Finish outputting spacing to lead up to the right border
     {
 
-      System.out.print(" ");
+      System.out.print(" "); // Prinpt out more spacing~
 
     }
 
-    System.out.println("|");
+    System.out.println("|"); // Output the right border
 
     // End massive section to format this properly
 
     System.out.println();
-    spacing("--------------------------------");
+    spacing("--------------------------------"); // Display the bottom border.
     System.out.println();
 
   }
 
-  public static int getRandom(int r1, int r2)
+  public static int getRandom(int r1, int r2) // getRandom() method
   {
 
-    int n2 = Math.max(r1, r2);
-    int n1 = Math.min(r1, r2);
+    // these two are here to ensure that the lower bound and upper bound are set respectively
+
+    int n2 = Math.max(r1, r2); // n2 is the higher bound; maximum of r1, r2
+    int n1 = Math.min(r1, r2); // vice versa of above
+
+    // the range that we want it is from n1 to n2, so we take the difference between them (so generating the number first from 0), and then adding n1 to it to put it within the range.
 
     int randomNum = rn.nextInt(n2 - n1) + n1 + 1;
 
-    return randomNum;
+    return randomNum; // Method returns the random number generated
 
   }
 
-  public static char readChar(char c1, char c2)
+  public static char readChar(char c1, char c2) // readChar() method
   {
 
-    char ch1, ch2, read;
+    char ch1, ch2, read; // set up variables, ch1 and ch2 might seem redundant, but are necessary to set the upper and lower bounds
 
-    if(c1 > c2)
+    // Section to find out the max / min values of c1 / c2 to set bounds accordingly
+    // Side note: Using Math.max() on characters will cause a compilation error; the JDK warns of precision loss
+
+    if(c1 > c2) // if c1 is the greatest value
     {
 
-      ch2 = c1;
-      ch1 = c2;
+      ch2 = c1; // ch2 (higher bound) is set to c1
+      ch1 = c2; // the other one is set accordingly
 
     }
 
-    else
+    else // the vice versa statement of above
     {
 
       ch2 = c2;
@@ -139,28 +148,34 @@ public class HK_Set5
 
     }
 
-    //System.out.println();
-    //System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    //System.out.println();
-    //spacing("The range specified is from " + ch1 + " to " + ch2 + ".");
-    //System.out.println();
-    //spacing("Enter a character in the range: ", 1);
+    /*
 
-    read = sc.nextLine().charAt(0);
+    Debug Statements
+
+    System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("The range specified is from " + ch1 + " to " + ch2 + ".");
+    System.out.println();
+    spacing("Enter a character in the range: ", 1);
+
+    */
+
+    read = sc.nextLine().charAt(0); // take in the input char
 
     //System.out.println();
 
-    while(ch1 > read || ch2 < read)
+    while(ch1 > read || ch2 < read) // keep asking if read is either smaller than the min or larger than the max; it's out of the range
     {
 
       System.out.println();
       System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
       System.out.println();
-      spacing("The character was not within the range " + ch1 + " to " + ch2 + ".");
+      spacing("The character was not within the range " + ch1 + " to " + ch2 + "."); // Tells user range again and describes error
       System.out.println();
       spacing("Please try again.");
       System.out.println();
-      spacing("Enter a character in the range: ", 1);
+      spacing("Enter a character in the range: ", 1); // Prompts for character again
 
       read = sc.nextLine().charAt(0);
 
@@ -168,48 +183,33 @@ public class HK_Set5
 
     }
 
-    return read;
+    return read; // If the loop no longer triggers, the read value is valid and is returned
 
   }
 
-  public static char readChar(String validList)
+  public static char readChar(String validList) // overloaded readChar() method
   {
 
-    char read;
-    char vals[] = new char[validList.length()];
+    char read; // set up variables
+    char vals[] = new char[validList.length()]; // vals is a character array based off the string recieved; there's probably an internal method to do this, but w/e
     String show = "";
 
-    for(int i = 0; i < validList.length(); i ++)
+    for(int i = 0; i < validList.length(); i ++) // looping through the list the first time
     {
 
-      vals[i] = validList.charAt(i);
+      vals[i] = validList.charAt(i); // take the characters from the string and point the array references accordingly
+      show += (vals[i] + ","); // Add the characters to a string that can be output
 
     }
 
-    for(int i = 0; i < validList.length(); i++)
+    read = sc.nextLine().charAt(0); // take in the input
+
+    boolean res = false; // temporary boolean variable to control loop
+
+    for(int i = 0; i < vals.length; i++) // looping through the valid list and matching up the variable
     {
 
-      show += (vals[i] + ", ");
-
-    }
-
-    //System.out.println();
-    //System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-    //System.out.println();
-    //spacing("Valid Characters: " + show + ".");
-    //System.out.println();
-    //spacing("Enter a valid character: ", 1);
-
-    read = sc.nextLine().charAt(0);
-
-    boolean res = false;
-
-    //System.out.println();
-
-    for(int i = 0; i < vals.length; i++)
-    {
-
-      if(read == vals[i])
+      if(read == vals[i]) // if the read variable matches any of the array elements, set the result to be true
       {
 
         res = true;
@@ -218,21 +218,23 @@ public class HK_Set5
 
     }
 
-    while(res == false)
+    while(res == false) // so long as the condition is not met
     {
 
       System.out.println();
       System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
       System.out.println();
-      spacing("The character was not part of the valid list");
+      spacing("The character was not part of the valid list."); // Tells the user that their input wasn't valid
+      System.out.println();
+      spacing("List: " + show); // Reminds the user of what is valid
       System.out.println();
       spacing("Please try again.");
       System.out.println();
-      spacing("Enter a valid character: ", 1);
+      spacing("Enter a valid character: ", 1); // Prompts for the input again
 
       read = sc.nextLine().charAt(0);
 
-      for(int i = 0; i < vals.length; i++)
+      for(int i = 0; i < vals.length; i++) // Direct copy from lines 212
       {
 
         if(read == vals[i])
@@ -248,105 +250,91 @@ public class HK_Set5
 
     }
 
-    return read;
+    return read; // return the read character
 
   }
 
-  public static int lcm(int n1, int n2)
+  public static int lcm(int n1, int n2) // lcm() method
   {
 
-    int temp = n1;
+    int temp = n1; // temporary variable used to store initial value of n1 (since n1 will be modified later)
 
-    if(n1 < 1 || n2 < 1)
+    if(n1 == 0 || n2 == 0) // Just checking if either of the values are zero
     {
 
       return 0;
 
     }
 
-    else
+    else // As long as they're not zero, continue on
     {
 
-      while(n1 % n2 != 0)
+      while(n1 % n2 != 0) // as long as n1 hasn't reached the point where it can divide out n2 perfectly
       {
 
-        n1 += temp;
+        n1 += temp; // increment n1 by its initial value; essentially moving up the multiplication table
 
       }
 
-      return n1;
+      return n1; // Return n1 once the modulus has succeeded
     }
 
   }
 
-  public static void theLcmMachine()
+  public static void theLcmMachine() // theLcmMachine() method
   {
 
-    int numPairs;
-    int tempPairs;
+    int numPairs; // set up variables
     int pairs[];
 
-    title("The LCM Machine");
+    title("The LCM Machine"); // use title() method to display the title
 
     System.out.println();
     System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     System.out.println();
-    spacing("How many pairs of numbers would you like to process?");
+    spacing("How many pairs of numbers would you like to process?"); // Prompts for some number pairs
     System.out.println();
     spacing("Pairs (1 - 9): ", 1);
 
-    tempPairs = sc.nextInt();
+    // sc.nextLine(); // clear scanner buffer
+
+    numPairs = readChar((char)(1+48), (char)(9+48));
 
     System.out.println();
     System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     System.out.println();
 
-    while(tempPairs < 1 || tempPairs > 9)
+    int genOne[] = new int[numPairs-48]; // array to store the first number generated for the lists
+    int genTwo[] = new int[numPairs-48]; // array to store the second...
+
+    for(int i = 0; i < numPairs-48; i++) // loop through the lists
     {
 
-      spacing("Error: The character you entered was not in the range.");
-      System.out.println();
-      spacing("Pairs (1 - 9): ", 1);
-
-      tempPairs = sc.nextInt();
-
-      System.out.println();
-      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-      System.out.println();
-
-    }
-
-    numPairs = ((char)(String.valueOf(tempPairs)).charAt(0)) - 48;
-
-    int genOne[] = new int[numPairs];
-    int genTwo[] = new int[numPairs];
-
-    for(int i = 0; i < numPairs; i++)
-    {
-
-      genOne[i] = getRandom(1,100);
+      genOne[i] = getRandom(1,100); // use the getRandom() method to generated random numbers from 1 to 100
       genTwo[i] = getRandom(1,100);
 
     }
 
-    System.out.println("              Number 1          Number 2               lCM");
+    // Output begins here
+
+    System.out.println("              Number 1          Number 2               lCM");  // Begin by outputting this chart; 14 spaces on either side to center it in 72 spaces
     System.out.println();
     System.out.println("              --------------------------------------------");
     System.out.println();
 
-    for(int i = 0; i < numPairs; i++)
+    for(int i = 0; i < numPairs-48; i++) // Looping through both arrays
     {
 
-      for(int j = 0; j < 22 - (String.valueOf(genOne[i])).length(); j++)
+      for(int j = 0; j < 22 - (String.valueOf(genOne[i])).length(); j++) // Right - alignment output of num1 requires spacing
       {
 
-        System.out.print(" ");
+        System.out.print(" "); // print blank spaces
 
       }
 
-      System.out.print(genOne[i]);
+      System.out.print(genOne[i]); // output the first number of the pair
 
-      for(int j = 0; j < 18 - (String.valueOf(genTwo[i])).length(); j++)
+      for(int j = 0; j < 18 - (String.valueOf(genTwo[i])).length(); j++) // as above
       {
 
         System.out.print(" ");
@@ -355,14 +343,14 @@ public class HK_Set5
 
       System.out.print(genTwo[i]);
 
-      for(int j = 0; j < 18 - (String.valueOf(lcm(genOne[i], genTwo[i]))).length(); j++)
+      for(int j = 0; j < 18 - (String.valueOf(lcm(genOne[i], genTwo[i]))).length(); j++) // This time makes use of the lcm() method from earlier to solve for the lcm
       {
 
         System.out.print(" ");
 
       }
 
-      System.out.print(lcm(genOne[i], genTwo[i]));
+      System.out.print(lcm(genOne[i], genTwo[i])); // prints out the lcm of the two generated values
       System.out.println();
 
     }
@@ -370,38 +358,24 @@ public class HK_Set5
     System.out.println();
     System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     System.out.println();
-    spacing("Would you like to run the program again?");
+    spacing("Would you like to run the program again?"); // Asks for a rerun
     System.out.println();
-    spacing("Enter Yes or No (Y/y/N/n): ", 1);
+    spacing("Enter Yes or No (Y/y/N/n): ", 1); // prompts for Y/y/N/n
 
-    char repeat = sc.next().charAt(0);
+    char repeat = readChar("YyNn");
 
     System.out.println();
 
-    if(repeat != 'Y' && repeat != 'y' && repeat != 'N' && repeat != 'n')
+    if(repeat == 'Y' || repeat == 'y') // if the character returned is either uppercase or lowercase y; meaning yes
     {
 
-      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-      spacing("Error: You did not enter Y/y/N/n");
       System.out.println();
-      spacing("Please try again: ", 1);
 
-      repeat = sc.next().charAt(0);
-
-    }
-
-    else
-    {
-
-      if(repeat == 'Y' || repeat == 'y')
-      {
-
-        System.out.println();
-        theLcmMachine();
-
-      }
+      theLcmMachine(); // (Recursively) calls itself to loop once more
 
     }
+
+    // returns void and exits immediately afterwards
 
   }
 
@@ -440,7 +414,8 @@ public class HK_Set5
       if(choice == 1)
       {
 
-        theLcmMachine();
+        sc.nextLine(); // clear buffer
+        theLcmMachine(); // call the program method
 
       }
 
