@@ -141,6 +141,7 @@ public class HK_Set5
   {
 
     char ch1, ch2, read; // set up variables, ch1 and ch2 might seem redundant, but are necessary to set the upper and lower bounds
+    String tempRead;
 
     // Section to find out the max / min values of c1 / c2 to set bounds accordingly
     // Side note: Using Math.max() on characters will cause a compilation error; the JDK warns of precision loss
@@ -161,27 +162,63 @@ public class HK_Set5
 
     }
 
-    read = sc.nextLine().charAt(0); // take in the input char
+    tempRead = sc.nextLine(); // take in the input as a string first
 
-    //System.out.println();
 
-    while(ch1 > read || ch2 < read) // keep asking if read is either smaller than the min or larger than the max; it's out of the range
+    boolean valid = false;
+
+    do
     {
 
-      System.out.println();
-      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-      System.out.println();
-      spacing("The character was not within the range " + ch1 + " to " + ch2 + "."); // Tells user range again and describes error
-      System.out.println();
-      spacing("Please try again.");
-      System.out.println();
-      spacing("Enter a character in the range: ", 1); // Prompts for character again
+      read = (char)(-1);
 
-      read = sc.nextLine().charAt(0);
+      if(tempRead.length() > 1) // to ensure that we're looking at a character here
+      {
 
-      System.out.println();
+        System.out.println();
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing("One character only, if you please..."); // Tells the user to input a char, not a damn string
+        System.out.println();
+        spacing("Please try again.");
+        System.out.println();
+        spacing("Enter a character: ", 1); // prompts for re - read
 
-    }
+        tempRead = sc.nextLine();
+
+      }
+
+      else
+      {
+
+        read = tempRead.charAt(0); // Sets the read variale to the proper character
+
+        if(ch1 > read || ch2 < read) // keep asking if read is either smaller than the min or larger than the max; it's out of the range
+        {
+
+          System.out.println();
+          System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+          System.out.println();
+          spacing("The character was not within the range " + ch1 + " to " + ch2 + "."); // Tells user range again and describes error
+          System.out.println();
+          spacing("Please try again.");
+          System.out.println();
+          spacing("Enter a character: ", 1);
+
+          tempRead = sc.nextLine(); // recieves another input
+
+        }
+
+        else // if none of those if conditions are triggered, the input must be valid
+        {
+
+          valid = true;
+
+        }
+
+      }
+
+    } while(valid == false); // triggers at least once, as a failsafe measure
 
     return read; // If the loop no longer triggers, the read value is valid and is returned
 
@@ -192,7 +229,7 @@ public class HK_Set5
 
     char read; // set up variables
     char vals[] = new char[validList.length()]; // vals is a character array based off the string recieved; there's probably an internal method to do this, but w/e
-    String show = "";
+    String show = "", tempRead;
 
     for(int i = 0; i < validList.length() - 1; i ++) // looping through the list the first time
     {
@@ -207,36 +244,65 @@ public class HK_Set5
 
     boolean res = false; // temporary boolean variable to control loop
 
+    tempRead = sc.nextLine();
+
     do // No matter what, needs to read input and scan through array at least once
     {
 
-      read = sc.nextLine().charAt(0);
+      read = (char)(-1); // set read to something that's invalid
 
-      for(int i = 0; i < vals.length; i++) // Direct copy from lines 212
-      {
-
-        if(read == vals[i])
-        {
-
-          res = true;
-
-        }
-
-      }
-
-      if(res == false) // only display these error messages if res is still false.
+      if(tempRead.length() > 1) // ensure we're reading a character, not a string
       {
 
         System.out.println();
         System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
         System.out.println();
-        spacing("The character was not part of the valid list."); // Tells the user that their input wasn't valid
+        spacing("One character only, if you please..."); // Tells the user what they did wrong
         System.out.println();
         spacing("List: " + show); // Reminds the user of what is valid
         System.out.println();
         spacing("Please try again.");
         System.out.println();
-        spacing("Enter a valid character: ", 1); // Prompts for the input again
+        spacing("Enter a character: ", 1);
+
+        tempRead = sc.nextLine(); // prompts for another input
+
+      }
+
+      else
+      {
+
+        read = tempRead.charAt(0); // take the first index of the tempRead variable to be read as the character
+
+        for(int i = 0; i < vals.length; i++) // iterate through the array, check if the character is ever equivalent
+        {
+
+          if(read == vals[i]) // if it's equivalent, flip the boolean back
+          {
+
+            res = true;
+
+          }
+
+        }
+
+        if(res == false) // only display these error messages if res is still false.
+        {
+
+          System.out.println();
+          System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+          System.out.println();
+          spacing("The character was not part of the valid list."); // Tells the user that their input wasn't valid
+          System.out.println();
+          spacing("List: " + show); // Reminds the user of what is valid
+          System.out.println();
+          spacing("Please try again.");
+          System.out.println();
+          spacing("Enter a valid character: ", 1); // Prompts for the input again
+
+          tempRead = sc.nextLine();
+
+        }
 
       }
 
