@@ -188,9 +188,88 @@ public class HK_Set6
 
     }
 
-    System.out.println();
-
     return res;
+
+  }
+
+  public static String shuffle()
+  {
+
+    String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // the total alphabet
+    String res = "";
+    char moving; // the current char being operated upon
+
+    int counter = 0; // loop counter
+
+    for(int i = 0; i < alpha.length(); i++) // loop through all 26 values (we need to replicate the length, obviously)
+    {
+
+      counter = 0; // reset the counter every time
+
+      moving = alpha.charAt(rn.nextInt(26));
+
+      while(counter < res.length()) // as long as we don't go out of bounds
+      {
+
+        while(moving == res.charAt(counter)) // constantly regenrate until no duplication
+        {
+
+          moving = alpha.charAt(rn.nextInt(26)); // regenerate
+
+          counter = 0; // and then set counter to 0, to run the whole process again
+
+        }
+
+        counter++; // increments the counter every time
+
+      }
+
+      res += moving; // add on the character that was finalized
+
+    }
+
+    return res; // returns the now generated mixup
+
+  }
+
+  public static String cryptoCode(String toBeShifted)
+  {
+
+    String upper = toBeShifted.toUpperCase(); // convert it all to uppercase for ease of use
+    String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    String mixer = shuffle(); // Uses my above shuffle method to generate a random shuffle of the alphabet
+    String res = ""; // result
+
+    //String mixer = "HOAZXJRTUYBIVEWKLSNCDMFGPQ"; (This is the test case)
+
+    char working; // working character
+    int finder = 0; // index of alphabet / mixed alphabet
+
+
+
+    for(int i = 0; i < upper.length(); i++) // loop through the entire string (uppercase version obviously)
+    {
+
+      working = upper.charAt(i); // set up the character I will be checking
+
+      if(alphabet(working) == true) // as long as it is an alphabetical character
+      {
+
+        finder = alpha.indexOf(working); // find what order it's in from the alphabet
+        res += mixer.charAt(finder); // call out that index from the scrambled alphabet and add it to my result string
+
+      }
+
+      else
+      {
+
+        res += working; // if it's not alphabetical, then just add the character directly
+
+      }
+
+    }
+
+    return res; // return the result
 
   }
 
@@ -233,9 +312,8 @@ public class HK_Set6
       if(choice == 1)
       {
 
-        String temp = sc.nextLine();
-        int temp1 = sc.nextInt();
-        spacing("" + shiftCode(temp, temp1));
+        String input = sc.nextLine();
+        spacing(cryptoCode(input));
 
       }
 
