@@ -83,6 +83,22 @@ public class HK_Set6
 
   }
 
+  public static boolean alphabet(char checking)
+  {
+
+    boolean res = false;
+
+    if(65 <= checking && 90 >= checking)
+    {
+
+      res = true;
+
+    }
+
+    return res;
+
+  }
+
   public static boolean palindrome(String inputForCheck)
   {
 
