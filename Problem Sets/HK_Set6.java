@@ -83,72 +83,64 @@ public class HK_Set6
 
   }
 
-  public static boolean alphabet(char checking)
+  public static boolean alphabet(char checking) // allows me to determine if a character is in the alphabet; specified to only work on uppercase characters
   {
 
-    boolean res = false;
+    boolean res = false; // result is false by default
 
-    if(65 <= checking && 90 >= checking)
+    if(65 <= checking && 90 >= checking) // character ranges are 65 (A) to 90 (Z)
     {
 
-      res = true;
+      res = true; // flips result flag over to true if it's valid
 
     }
 
-    return res;
+    return res; // returns the true/false
 
   }
 
   public static boolean palindrome(String inputForCheck)
   {
 
-    int points = 0;
-    String checking, alphabet = "QWERTYUIOPASDFGHJKLZXCVBNM";
-    String mod = "";
-    boolean res = false;
+    int points = 0; // set up variables
+    String checking; // new string that contains everything in uppercase
+    String mod = ""; // new string that we'll be checking for palindrome on
+    boolean res = false; // the result to be returned
 
-    checking = inputForCheck.toUpperCase();
+    checking = inputForCheck.toUpperCase(); // sets it all in uppercase just to make sure
 
-    for(int i = 0; i < checking.length(); i++)
+    for(int i = 0; i < checking.length(); i++) // iterates through the completely uppercase string, removes all non - alphabet charracters
     {
 
-      for(int j = 0; j < alphabet.length(); j++)
+      if(alphabet(checking.charAt(i)) == true) // using my previously written alphabet method
       {
 
-        if(checking.charAt(i) == alphabet.charAt(j))
-        {
-
-          mod += checking.charAt(i);
-          System.out.println("Adding " + checking.charAt(i) + " to the mod var.");
-
-        }
+        mod += checking.charAt(i); // add the value if valid to the string that will be checked
 
       }
 
     }
 
-    for(int i = 0; i < mod.length(); i++)
+    for(int i = 0; i < mod.length(); i++) // iterating through string that only contains the bare alphabetical characters
     {
 
-      spacing("Comparing " + mod.charAt(i) + " to " + mod.charAt(mod.length() - (i+1)));
-
-      if(mod.charAt(i) == mod.charAt(mod.length() - (i+1)))
+      if(mod.charAt(i) == mod.charAt(mod.length() - (i+1))) // comparing the beginning character to the end and move inwards
       {
 
-        points += 1;
+        points += 1; // add a point if it's valid; points must be equal to length for it to be palindrome
 
       }
 
     }
 
-    if(points == mod.length())
+    if(points == mod.length()) // check that the matches are the same number as the string's length
     {
 
-      res = true;
+      res = true; // flips flag over to true
 
     }
 
-    return res;
+    return res; // returns the result
 
   }
 
