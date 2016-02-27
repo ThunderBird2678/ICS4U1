@@ -156,24 +156,24 @@ public class HK_Set6
       if(alphabet(upper.charAt(i)) == true) // First of all, it has to be an alphabetical character
       {
 
-        if((upper.charAt(i) + shift) > 90) // if the shift places it outside of the far bound
+        if((upper.charAt(i) + (shift % 26)) > 90) // if the shift places it outside of the far bound (Note: shift is always calculated as shift%26 since it loops around anyway)
         {
 
-          res += (char)(64 + (shift - (90 - upper.charAt(i)))); // twist it around to the front again; using 64 and not 65 to take account for the fact that A is part of the shift
+          res += (char)(64 + ((shift % 26) - (90 - upper.charAt(i)))); // twist it around to the front again; using 64 and not 65 to take account for the fact that A is part of the shift
 
         }
 
-        else if((upper.charAt(i) + shift) < 65) // same method, but if it's inside of the near bound;
+        else if((upper.charAt(i) + (shift % 26)) < 65) // same method, but if it's inside of the near bound;
         {
 
-          res += (char)(91 + (shift - (upper.charAt(i) - 65))); // again, 91 instead of 90 since Z is part of the shift
+          res += (char)(91 + ((shift % 26) - (upper.charAt(i) - 65))); // again, 91 instead of 90 since Z is part of the shift
 
         }
 
         else // otherwise, just shift it directly
         {
 
-          res += (char)(upper.charAt(i) + shift);
+          res += (char)(upper.charAt(i) + (shift % 26));
 
         }
 
@@ -232,12 +232,11 @@ public class HK_Set6
 
   }
 
-  public static String cryptoCode(String toBeShifted)
+  public static String cryptoCode(String toBeShifted, String mixer)
   {
 
     String upper = toBeShifted.toUpperCase(); // convert it all to uppercase for ease of use
     String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    String mixer = shuffle(); // Uses my above shuffle method to generate a random shuffle of the alphabet
     String res = ""; // result
 
     //String mixer = "HOAZXJRTUYBIVEWKLSNCDMFGPQ"; (This is the test case)
@@ -312,8 +311,105 @@ public class HK_Set6
       if(choice == 1)
       {
 
-        String input = sc.nextLine();
-        spacing(cryptoCode(input));
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing("Welcome to the Palindrome program!");
+        System.out.println();
+        spacing("Enter your string of text: ", 15);
+
+        String palInput = sc.nextLine(); // prompt for input
+
+        System.out.println();
+
+        boolean result = palindrome(palInput); // send the input to palindrome method
+
+        if(result == true) // displays results if true
+        {
+
+          System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+          System.out.println();
+          spacing("\"" + palInput + "\" is a palindrome!");
+          System.out.println();
+
+        }
+
+        else // displays results if false
+        {
+
+          System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+          System.out.println();
+          spacing("\"" + palInput + "\" is not a palindrome.");
+          System.out.println();
+
+        }
+
+        pause(); // wait for keystroke
+
+      }
+
+      else if(choice == 2)
+      {
+
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing("Welcome to the ShiftCode program!");
+        System.out.println();
+        spacing("Enter the text you would like to shift: ", 15); // prompts for text
+
+        String sftInput1 = sc.nextLine();
+
+        System.out.println();
+
+        spacing("Enter your shift value: ", 2); // prompts for the shifting
+
+        int sftInput2 = sc.nextInt();
+
+        System.out.println();
+
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing("\"" + sftInput1 + "\" shifted by " + sftInput2 + " results in:"); // outputs shift results
+        System.out.println();
+        spacing(shiftCode(sftInput1, sftInput2));
+        System.out.println();
+
+        sc.nextLine();
+
+        pause(); // waits for keystroke
+
+      }
+
+      else if(choice == 3)
+      {
+
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing("Welcome to the CryptoCode program!");
+        System.out.println();
+        spacing("Enter the text you would like to encode: ", 15); // prompts for text input
+
+        String cptInput = sc.nextLine();
+
+        System.out.println();
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+
+        String mixer = shuffle(); // shuffles alphabet and stores it in variable
+
+        spacing("The scrambled alphabet generated was: " + mixer); // tells user the code
+
+        System.out.println();
+
+        spacing("Using that to encode " + "\"" + cptInput + "\" results in:"); // outputs result
+
+        System.out.println();
+
+        spacing(cryptoCode(cptInput, mixer));
+
+        System.out.println();
+
+        pause(); // prompt for keystroke
+
 
       }
 
