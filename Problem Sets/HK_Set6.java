@@ -144,6 +144,56 @@ public class HK_Set6
 
   }
 
+  public static String shiftCode(String toBeShifted, int shift)
+  {
+
+    String upper = toBeShifted.toUpperCase(); // convert it all to uppercase first
+    String res = ""; // the result that will be returned in the end
+
+    for(int i = 0; i < upper.length(); i++) // loops through all values in the uppercase String; 3 options
+    {
+
+      if(alphabet(upper.charAt(i)) == true) // First of all, it has to be an alphabetical character
+      {
+
+        if((upper.charAt(i) + shift) > 90) // if the shift places it outside of the far bound
+        {
+
+          res += (char)(64 + (shift - (90 - upper.charAt(i)))); // twist it around to the front again; using 64 and not 65 to take account for the fact that A is part of the shift
+
+        }
+
+        else if((upper.charAt(i) + shift) < 65) // same method, but if it's inside of the near bound;
+        {
+
+          res += (char)(91 + (shift - (upper.charAt(i) - 65))); // again, 91 instead of 90 since Z is part of the shift
+
+        }
+
+        else // otherwise, just shift it directly
+        {
+
+          res += (char)(upper.charAt(i) + shift);
+
+        }
+
+      }
+
+      else // if it's not a alphabetical character, just add it directly
+      {
+
+        res += upper.charAt(i);
+
+      }
+
+    }
+
+    System.out.println();
+
+    return res;
+
+  }
+
   public static void main (String [] args)
   {
 
@@ -184,7 +234,8 @@ public class HK_Set6
       {
 
         String temp = sc.nextLine();
-        spacing("" + palindrome(temp));
+        int temp1 = sc.nextInt();
+        spacing("" + shiftCode(temp, temp1));
 
       }
 
