@@ -16,6 +16,8 @@ public class HK_Set6
   static Scanner sc; // Initalize the scanner Object
   static Random rn; // Initalize the Random Object
 
+  public static String key = "HOAZXJRTUYBIVEWKLSNCDMFGPQ" + ("HOAZXJRTUYBIVEWKLSNCDMFGPQ".toLowerCase());
+
   public static void spacing( String printed ) // Custom method written in order to center - align output)
   {
 
@@ -75,7 +77,7 @@ public class HK_Set6
 
     System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     System.out.println();
-    spacing("Press any key to return to the menu."); // prompt for a keystroke
+    spacing("Press the <Enter> key to return to the menu."); // prompt for a keystroke
 
     sc.nextLine(); // take any keystroke
 
@@ -92,6 +94,13 @@ public class HK_Set6
     {
 
       res = true; // flips result flag over to true if it's valid
+
+    }
+
+    else if(97 <= checking && 122 >= checking) // character ranges are 97 (a) to 122 (z)
+    {
+
+      res = true; // as above
 
     }
 
@@ -147,33 +156,64 @@ public class HK_Set6
   public static String shiftCode(String toBeShifted, int shift)
   {
 
-    String upper = toBeShifted.toUpperCase(); // convert it all to uppercase first
     String res = ""; // the result that will be returned in the end
 
-    for(int i = 0; i < upper.length(); i++) // loops through all values in the uppercase String; 3 options
+    for(int i = 0; i < toBeShifted.length(); i++) // loops through all values in the uppercase String;
     {
 
-      if(alphabet(upper.charAt(i)) == true) // First of all, it has to be an alphabetical character
+      if(alphabet(toBeShifted.charAt(i)) == true) // First of all, it has to be an alphabetical character
       {
 
-        if((upper.charAt(i) + shift) > 90) // if the shift places it outside of the far bound
+        if(toBeShifted.charAt(i) < 123 && toBeShifted.charAt(i) > 96) // first, if it's lowercase...
         {
 
-          res += (char)(64 + (shift - (90 - upper.charAt(i)))); // twist it around to the front again; using 64 and not 65 to take account for the fact that A is part of the shift
+          if((toBeShifted.charAt(i) + (shift % 26)) > 122) // if the shift places it outside of the far bound (Note: shift is always calculated as shift%26 since it loops around anyway)
+          {
+
+            res += (char)(96 + ((shift % 26) - (122 - toBeShifted.charAt(i)))); // twist it around to the front again; using 122 and not 123 to take account for the fact that A is part of the shift
+
+          }
+
+          else if((toBeShifted.charAt(i) + (shift % 26)) < 97) // same method, but if it's inside of the near bound;
+          {
+
+            res += (char)(123 + ((shift % 26) - (toBeShifted.charAt(i) - 97))); // again, 123 instead of 122 since Z is part of the shift
+
+          }
+
+          else // otherwise, just shift it directly
+          {
+
+            res += (char)(toBeShifted.charAt(i) + (shift % 26));
+
+          }
+
 
         }
 
-        else if((upper.charAt(i) + shift) < 65) // same method, but if it's inside of the near bound;
+        else // so if it's lowercase
         {
 
-          res += (char)(91 + (shift - (upper.charAt(i) - 65))); // again, 91 instead of 90 since Z is part of the shift
+          if((toBeShifted.charAt(i) + (shift % 26)) > 90) // if the shift places it outside of the far bound (Note: shift is always calculated as shift%26 since it loops around anyway)
+          {
 
-        }
+            res += (char)(64 + ((shift % 26) - (90 - toBeShifted.charAt(i)))); // twist it around to the front again; using 64 and not 65 to take account for the fact that A is part of the shift
 
-        else // otherwise, just shift it directly
-        {
+          }
 
-          res += (char)(upper.charAt(i) + shift);
+          else if((toBeShifted.charAt(i) + (shift % 26)) < 65) // same method, but if it's inside of the near bound;
+          {
+
+            res += (char)(91 + ((shift % 26) - (toBeShifted.charAt(i) - 65))); // again, 91 instead of 90 since Z is part of the shift
+
+          }
+
+          else // otherwise, just shift it directly
+          {
+
+            res += (char)(toBeShifted.charAt(i) + (shift % 26));
+
+          }
 
         }
 
@@ -182,7 +222,7 @@ public class HK_Set6
       else // if it's not a alphabetical character, just add it directly
       {
 
-        res += upper.charAt(i);
+        res += toBeShifted.charAt(i);
 
       }
 
@@ -192,16 +232,17 @@ public class HK_Set6
 
   }
 
-  public static String shuffle()
+  public static String shuffle(boolean both)
   {
 
-    String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"; // the total alphabet
+    String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz"; // the total alphabet
     String res = "";
+    String tempResLower; // temporary variable
     char moving; // the current char being operated upon
 
     int counter = 0; // loop counter
 
-    for(int i = 0; i < alpha.length(); i++) // loop through all 26 values (we need to replicate the length, obviously)
+    for(int i = 0; i < 26; i++) // loop through all 26 values (we need to replicate the length, obviously)
     {
 
       counter = 0; // reset the counter every time
@@ -228,16 +269,17 @@ public class HK_Set6
 
     }
 
+    tempResLower = res.toLowerCase(); // create a new version of the key that's lowercase
+    res += tempResLower; // append the new version to the result that's returned
+
     return res; // returns the now generated mixup
 
   }
 
-  public static String cryptoCode(String toBeShifted)
+  public static String cryptoCode(String toBeShifted, String mixer)
   {
 
-    String upper = toBeShifted.toUpperCase(); // convert it all to uppercase for ease of use
-    String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
-    String mixer = shuffle(); // Uses my above shuffle method to generate a random shuffle of the alphabet
+    String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
     String res = ""; // result
 
     //String mixer = "HOAZXJRTUYBIVEWKLSNCDMFGPQ"; (This is the test case)
@@ -247,10 +289,10 @@ public class HK_Set6
 
 
 
-    for(int i = 0; i < upper.length(); i++) // loop through the entire string (uppercase version obviously)
+    for(int i = 0; i < toBeShifted.length(); i++) // loop through the entire string
     {
 
-      working = upper.charAt(i); // set up the character I will be checking
+      working = toBeShifted.charAt(i); // set up the character I will be checking
 
       if(alphabet(working) == true) // as long as it is an alphabetical character
       {
@@ -270,6 +312,41 @@ public class HK_Set6
     }
 
     return res; // return the result
+
+  }
+
+  public static String decodeCode(String scramble, String key)
+  {
+
+    String alpha = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz";
+    String res = "";
+
+    char working;
+    int finder = 0;
+
+    for(int i = 0; i < scramble.length(); i++)
+    {
+
+      working = scramble.charAt(i);
+
+      if(alphabet(working) == true)
+      {
+
+        finder = key.indexOf(working);
+        res += alpha.charAt(finder);
+
+      }
+
+      else
+      {
+
+        res += working;
+
+      }
+
+    }
+
+    return res;
 
   }
 
@@ -296,6 +373,7 @@ public class HK_Set6
       spacing("1: Palindrome");
       spacing("2: ShiftCode");
       spacing("3: CryptoCode");
+      spacing("4: DecodeCode");
       System.out.println();
       spacing("0: Exit");
       System.out.println();
@@ -312,8 +390,220 @@ public class HK_Set6
       if(choice == 1)
       {
 
-        String input = sc.nextLine();
-        spacing(cryptoCode(input));
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing("Welcome to the Palindrome program!");
+        System.out.println();
+        spacing("Enter your string of text: ", 15);
+
+        String palInput = sc.nextLine(); // prompt for input
+
+        System.out.println();
+
+        boolean result = palindrome(palInput); // send the input to palindrome method
+
+        if(result == true) // displays results if true
+        {
+
+          System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+          System.out.println();
+          spacing("\"" + palInput + "\" is a palindrome!");
+          System.out.println();
+
+        }
+
+        else // displays results if false
+        {
+
+          System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+          System.out.println();
+          spacing("\"" + palInput + "\" is not a palindrome.");
+          System.out.println();
+
+        }
+
+        pause(); // wait for keystroke
+
+      }
+
+      else if(choice == 2)
+      {
+
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing("Welcome to the ShiftCode program!");
+        System.out.println();
+        spacing("Enter the text you would like to shift: ", 15); // prompts for text
+
+        String sftInput1 = sc.nextLine();
+
+        System.out.println();
+
+        spacing("Enter your shift value: ", 2); // prompts for the shifting
+
+        int sftInput2 = sc.nextInt();
+
+        System.out.println();
+
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing("\"" + sftInput1 + "\" shifted by " + sftInput2 + " results in:"); // outputs shift results
+        System.out.println();
+        spacing(shiftCode(sftInput1, sftInput2));
+        System.out.println();
+
+        sc.nextLine();
+
+        pause(); // waits for keystroke
+
+      }
+
+      else if(choice == 3)
+      {
+
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing("Welcome to the CryptoCode program!");
+        System.out.println();
+        spacing("Enter the text you would like to encode: ", 15); // prompts for text input
+
+        String cptInput = sc.nextLine();
+
+        System.out.println();
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+
+        key = shuffle(false); // shuffles alphabet and stores it in variable
+
+        spacing("The scrambled alphabet generated was: ");
+
+        System.out.println();
+
+        spacing(key); // tells user the code
+
+        System.out.println();
+
+        spacing("Using that to encode " + "\"" + cptInput + "\" results in:"); // outputs result
+
+        System.out.println();
+
+        spacing(cryptoCode(cptInput, key));
+
+        System.out.println();
+
+        pause(); // prompt for keystroke
+
+
+      }
+
+      else if(choice == 4)
+      {
+
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing("Welcome to the CryptoCode program!");
+        System.out.println();
+        spacing("Enter the text you would like to decode: ", 15); // prompts for text input
+
+        String dccInput = sc.nextLine();
+
+        System.out.println();
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+
+        spacing("What do you wish to use as your key?"); // asks for a key input
+        System.out.println();
+        spacing("1: Mr. Jay's Default Key");
+        spacing("2: The Key Currently in Memory");
+        spacing("3: Enter Your Own (As individual characters)");
+        spacing("4: Enter Your Own (As a single String)");
+        System.out.println();
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing("Choice: ", 1);
+
+        int dccChoice = sc.nextInt(); // takes in user's choice
+
+        System.out.println();
+
+        sc.nextLine();
+
+        if(dccChoice == 1) // if they want the default example key
+        {
+
+          key = "HOAZXJRTUYBIVEWKLSNCDMFGPQ" + ("HOAZXJRTUYBIVEWKLSNCDMFGPQ".toLowerCase()); // set up the key variable accordingly
+
+        }
+
+        // note: there is no if statement for 2, since 2 just grabs it from the memory; the only reason I have this line is to prevent 2 from triggering the else
+
+        else if(dccChoice == 2){}
+
+        else if(dccChoice == 3) // when the user inputs their own key manually through characters
+        {
+
+          String res = ""; // the final result that will be used
+          char loadIn; // the individual characters
+
+          for(int i = 0; i < 26; i++) // looping through the basic alphabet
+          {
+
+            spacing("What would you like the letter <" + (char)(i + 65) + "> to be? :", 1); // prompts for character
+
+            loadIn = sc.nextLine().charAt(0);
+
+            System.out.println();
+
+            while(alphabet(loadIn) == false) // character is checked to make sure it's part of the alphabet
+            {
+
+              System.out.println();
+              spacing("That was not a letter. Please try again."); // if it's not, program alerts user and makes them try again
+              spacing("What would you like the letter <" + (char)(i + 65) + "> to be? :", 1);
+
+              loadIn = sc.nextLine().charAt(0);
+
+              System.out.println();
+
+            }
+
+            res += loadIn; // loads the valid response into the res string
+            key = res.toUpperCase(); // key is the entire res portion converted to uppercase
+            res = key.toLowerCase(); // res is then set to the lowercase ver (to accomodate for both uppercase and lowercase)
+            key += res; // res is then concatenated to the end ofkey
+
+          }
+
+        }
+
+        else if(dccChoice == 4)
+        {
+
+          spacing("Enter your key: ");
+          System.out.println();
+          key = sc.nextLine(); // the assumption is that if the user's using this option, they have the key properly formatted
+          System.out.println();
+
+        }
+
+        else // anything that wasn't covered and isn't 2 is invalid
+        {
+
+          spacing("You have entered an invalid command.");
+          spacing("Program will decode your string with the current key.");
+          System.out.println();
+
+        }
+
+        spacing("Decoding your String with the following key: ");
+        spacing(key);
+        System.out.println();
+        spacing("Using that to encode " + "\"" + dccInput + "\" results in:");
+        System.out.println();
+        spacing(decodeCode(dccInput, key)); // output the results
+        System.out.println();
+
+        pause();
 
       }
 
