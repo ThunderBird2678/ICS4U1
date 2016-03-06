@@ -83,6 +83,129 @@ public class HK_Set7
 
   }
 
+  public static int gcfRecur(int n1, int n2)
+  {
+
+    if(n1 == n2) // if the two are equal, then they're done
+    {
+
+      return n1;
+
+    }
+
+    else if(n1 < n2) // if the second number is larger
+    {
+
+      return gcfRecur(n2, n1); // reset the process so the first is larger (allwing us to use general algorithm)
+
+    }
+
+    else // so long as the first is larger than the second
+    {
+
+      return gcfRecur(n2, n1 - n2); // take away the second from the first; slowly whittling down the remainder
+
+    }
+
+  }
+
+  public static int gcfIter(int n1, int n2)
+  {
+
+    int t1, t2; // temp variables that allow me to reset back and forth
+
+    do // using a dowhile() loop becausse I need to check this at least once
+    {
+
+      if(n1 < n2) // if the first is less than the second
+      {
+
+        t1 = n2; // rebind t1 and t2 so that t1 is greater than t2
+        t2 = n1;
+
+      }
+
+      else // if all is in order
+      {
+
+        t1 = n1; // bind t1 and t2 directly corresponding to n1 and n2
+        t2 = n2;
+
+      }
+
+      n1 = t1; // rebind n1 and n2 to the order specified in the t - processes
+      n2 = t2;
+
+      n1 -= n2; // perform the operation where I whittle down the remainder by subtracting n2 from n1
+
+    } while(n1 != n2); // check to make sure they're not equal and run again
+
+    return n1; // when it's all done, n1 is returned
+
+  }
+
+  public static void drGcfRecur()
+  {
+
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("Welcome to the (Recursive) GCF program!");
+    System.out.println();
+    spacing("Enter the first number: ", 2);
+
+    int input1 = sc.nextInt(); // prompt, recieve first parameter
+    sc.nextLine(); // clear buffer
+
+    System.out.println();
+
+    spacing("Enter the second number: ", 2);
+
+    int input2 = sc.nextInt(); // prompt, recieve second parameter
+    sc.nextLine(); // clear buffer
+
+    System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("The GCF of " + input1 + " and " + input2 + " is: "); // shows output
+    System.out.println();
+    spacing("" + gcfRecur(input1, input2)); // directly print smethod's return
+    System.out.println();
+
+    pause(); // waits for keystroke
+
+  }
+
+  public static void drGcfIter()
+  {
+
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("Welcome to the (Recursive) GCF program!");
+    System.out.println();
+    spacing("Enter the first number: ", 2);
+
+    int input1 = sc.nextInt(); // prompt, recieve first parameter
+    sc.nextLine(); // clear buffer
+
+    System.out.println();
+
+    spacing("Enter the second number: ", 2);
+
+    int input2 = sc.nextInt(); // prompt, recieve second parameter
+    sc.nextLine(); // clear buffer
+
+    System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("The GCF of " + input1 + " and " + input2 + " is: "); // shows output
+    System.out.println();
+    spacing("" + gcfIter(input1, input2)); // directly print smethod's return
+    System.out.println();
+
+    pause(); // waits for keystroke
+
+  }
+
   public static void main (String [] args)
   {
 
@@ -123,10 +246,14 @@ public class HK_Set7
       if(choice == 1)
       {
 
+        drGcfRecur();
+
       }
 
       else if(choice == 2)
       {
+
+        drGcfIter();
 
       }
 
