@@ -144,6 +144,56 @@ public class HK_Set7
 
   }
 
+  public static int fibRecur(int n1, int n2, int librorum, int prohibitorum)
+  {
+
+    if(prohibitorum == librorum) // if the desired n is equal to the counter n
+    {
+
+      return n1; // simply return n1
+
+    }
+
+    else if(n1 > n2) // if n1 is greater than n2 (shouldn't happen, but it's a failsafe)
+    {
+
+      return fibRecur(n2, n1, librorum, prohibitorum); // put them in order and continue (don't increment anything)
+
+    }
+
+    else // if they're not equal and n2 is greater than n2
+    {
+
+      return fibRecur(n2 + n1, n2, librorum + 1, prohibitorum); // increment counter, rerun method with n2 set to the sum and n1 set to what was n2
+
+    }
+
+  }
+
+  public static int fibIter(int prohibitorum)
+  {
+
+    int librorum = 2; // set up all counters right when the method is initalized (because you don't need to pass them on to further recursions of the method)
+    int n1 = 1, n2 = 1;
+    int t1, t2;
+
+    do // running with a dowhile because we need to check at least once
+    {
+
+      t2 = n2 + n1; // use temp variables to allow for sorting
+      t1 = n2;
+
+      n2 = t2; // put this all in order with the increments in place
+      n1 = t1;
+
+      librorum ++; // increment counter
+
+    } while (librorum < prohibitorum); // check to see if my counter is equal to my desired n
+
+    return n2; // if so, return the final value
+
+  }
+
   public static void drGcfRecur()
   {
 
@@ -168,7 +218,7 @@ public class HK_Set7
     System.out.println();
     spacing("The GCF of " + input1 + " and " + input2 + " is: "); // shows output
     System.out.println();
-    spacing("" + gcfRecur(input1, input2)); // directly print smethod's return
+    spacing("" + gcfRecur(input1, input2)); // directly print method's return
     System.out.println();
 
     pause(); // waits for keystroke
@@ -180,7 +230,7 @@ public class HK_Set7
 
     System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
     System.out.println();
-    spacing("Welcome to the (Recursive) GCF program!");
+    spacing("Welcome to the (Iterative) GCF program!");
     System.out.println();
     spacing("Enter the first number: ", 2);
 
@@ -199,10 +249,58 @@ public class HK_Set7
     System.out.println();
     spacing("The GCF of " + input1 + " and " + input2 + " is: "); // shows output
     System.out.println();
-    spacing("" + gcfIter(input1, input2)); // directly print smethod's return
+    spacing("" + gcfIter(input1, input2)); // directly print method's return
     System.out.println();
 
     pause(); // waits for keystroke
+
+  }
+
+  public static void drFibRecur()
+  {
+
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("Welcome to the (Recursive) Fibonacci program!");
+    System.out.println();
+    spacing("Enter the term you would like to reach: ", 2);
+
+    int input = sc.nextInt(); // prompt, recieve input
+    sc.nextLine(); // clear buffer
+
+    System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("The Fibonacci number at n = " + input + " is:");
+    System.out.println();
+    spacing("" + fibRecur(1, 1, 2, input)); // output result directly from method call
+    System.out.println();
+
+    pause(); // wait for keystroke
+
+  }
+
+  public static void drFibIter()
+  {
+
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("Welcome to the (Iterative) Fibonacci program!");
+    System.out.println();
+    spacing("Enter the term you would like to reach: ", 2);
+
+    int input = sc.nextInt(); // prompt, recieve input
+    sc.nextLine(); // clear buffer
+
+    System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("The Fibonacci number at n = " + input + " is:");
+    System.out.println();
+    spacing("" + fibIter(input)); // output result directly from method call
+    System.out.println();
+
+    pause(); // wait for keystroke
 
   }
 
@@ -260,10 +358,14 @@ public class HK_Set7
       else if(choice == 3)
       {
 
+        drFibRecur();
+
       }
 
       else if(choice == 4)
       {
+
+        drFibIter();
 
       }
 
