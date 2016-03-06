@@ -350,6 +350,225 @@ public class HK_Set6
 
   }
 
+  public static void drPalindrome()
+  {
+
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("Welcome to the Palindrome program!");
+    System.out.println();
+    spacing("Enter your string of text: ", 15);
+
+    String palInput = sc.nextLine(); // prompt for input
+
+    System.out.println();
+
+    boolean result = palindrome(palInput); // send the input to palindrome method
+
+    if(result == true) // displays results if true
+    {
+
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      System.out.println();
+      spacing("\"" + palInput + "\" is a palindrome!");
+      System.out.println();
+
+    }
+
+    else // displays results if false
+    {
+
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      System.out.println();
+      spacing("\"" + palInput + "\" is not a palindrome.");
+      System.out.println();
+
+    }
+
+    pause(); // wait for keystroke
+
+  }
+
+  public static void drShiftCode()
+  {
+
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("Welcome to the ShiftCode program!");
+    System.out.println();
+    spacing("Enter the text you would like to shift: ", 15); // prompts for text
+
+    String sftInput1 = sc.nextLine();
+
+    System.out.println();
+
+    spacing("Enter your shift value: ", 2); // prompts for the shifting
+
+    int sftInput2 = sc.nextInt();
+
+    System.out.println();
+
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("\"" + sftInput1 + "\" shifted by " + sftInput2 + " results in:"); // outputs shift results
+    System.out.println();
+    spacing(shiftCode(sftInput1, sftInput2));
+    System.out.println();
+
+    sc.nextLine();
+
+    pause(); // waits for keystroke
+
+  }
+
+  public static void drCryptoCode()
+  {
+
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("Welcome to the CryptoCode program!");
+    System.out.println();
+    spacing("Enter the text you would like to encode: ", 15); // prompts for text input
+
+    String cptInput = sc.nextLine();
+
+    System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+
+    key = shuffle(false); // shuffles alphabet and stores it in variable
+
+    spacing("The scrambled alphabet generated was: ");
+
+    System.out.println();
+
+    spacing(key); // tells user the code
+
+    System.out.println();
+
+    spacing("Using that to encode " + "\"" + cptInput + "\" results in:"); // outputs result
+
+    System.out.println();
+
+    spacing(cryptoCode(cptInput, key));
+
+    System.out.println();
+
+    pause(); // prompt for keystroke
+
+  }
+
+  public static void drDeCodeCode()
+  {
+
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("Welcome to the CryptoCode program!");
+    System.out.println();
+    spacing("Enter the text you would like to decode: ", 15); // prompts for text input
+
+    String dccInput = sc.nextLine();
+
+    System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+
+    spacing("What do you wish to use as your key?"); // asks for a key input
+    System.out.println();
+    spacing("1: Mr. Jay's Default Key");
+    spacing("2: The Key Currently in Memory");
+    spacing("3: Enter Your Own (As individual characters)");
+    spacing("4: Enter Your Own (As a single String)");
+    System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("Choice: ", 1);
+
+    int dccChoice = sc.nextInt(); // takes in user's choice
+
+    System.out.println();
+
+    sc.nextLine();
+
+    if(dccChoice == 1) // if they want the default example key
+    {
+
+      key = "HOAZXJRTUYBIVEWKLSNCDMFGPQ" + ("HOAZXJRTUYBIVEWKLSNCDMFGPQ".toLowerCase()); // set up the key variable accordingly
+
+    }
+
+    // note: there is no if statement for 2, since 2 just grabs it from the memory; the only reason I have this line is to prevent 2 from triggering the else
+
+    else if(dccChoice == 2){}
+
+    else if(dccChoice == 3) // when the user inputs their own key manually through characters
+    {
+
+      String res = ""; // the final result that will be used
+      char loadIn; // the individual characters
+
+      for(int i = 0; i < 26; i++) // looping through the basic alphabet
+      {
+
+        spacing("What would you like the letter <" + (char)(i + 65) + "> to be? :", 1); // prompts for character
+
+        loadIn = sc.nextLine().charAt(0);
+
+        System.out.println();
+
+        while(alphabet(loadIn) == false) // character is checked to make sure it's part of the alphabet
+        {
+
+          System.out.println();
+          spacing("That was not a letter. Please try again."); // if it's not, program alerts user and makes them try again
+          spacing("What would you like the letter <" + (char)(i + 65) + "> to be? :", 1);
+
+          loadIn = sc.nextLine().charAt(0);
+
+          System.out.println();
+
+        }
+
+        res += loadIn; // loads the valid response into the res string
+        key = res.toUpperCase(); // key is the entire res portion converted to uppercase
+        res = key.toLowerCase(); // res is then set to the lowercase ver (to accomodate for both uppercase and lowercase)
+        key += res; // res is then concatenated to the end ofkey
+
+      }
+
+    }
+
+    else if(dccChoice == 4)
+    {
+
+      spacing("Enter your key: ");
+      System.out.println();
+      key = sc.nextLine(); // the assumption is that if the user's using this option, they have the key properly formatted
+      System.out.println();
+
+    }
+
+    else // anything that wasn't covered and isn't 2 is invalid
+    {
+
+      spacing("You have entered an invalid command.");
+      spacing("Program will decode your string with the current key.");
+      System.out.println();
+
+    }
+
+    spacing("Decoding your String with the following key: ");
+    spacing(key);
+    System.out.println();
+    spacing("Using that to encode " + "\"" + dccInput + "\" results in:");
+    System.out.println();
+    spacing(decodeCode(dccInput, key)); // output the results
+    System.out.println();
+
+    pause();
+
+  }
+
   public static void main (String [] args)
   {
 
@@ -390,220 +609,27 @@ public class HK_Set6
       if(choice == 1)
       {
 
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.println();
-        spacing("Welcome to the Palindrome program!");
-        System.out.println();
-        spacing("Enter your string of text: ", 15);
-
-        String palInput = sc.nextLine(); // prompt for input
-
-        System.out.println();
-
-        boolean result = palindrome(palInput); // send the input to palindrome method
-
-        if(result == true) // displays results if true
-        {
-
-          System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-          System.out.println();
-          spacing("\"" + palInput + "\" is a palindrome!");
-          System.out.println();
-
-        }
-
-        else // displays results if false
-        {
-
-          System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-          System.out.println();
-          spacing("\"" + palInput + "\" is not a palindrome.");
-          System.out.println();
-
-        }
-
-        pause(); // wait for keystroke
+        drPalindrome();
 
       }
 
       else if(choice == 2)
       {
 
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.println();
-        spacing("Welcome to the ShiftCode program!");
-        System.out.println();
-        spacing("Enter the text you would like to shift: ", 15); // prompts for text
-
-        String sftInput1 = sc.nextLine();
-
-        System.out.println();
-
-        spacing("Enter your shift value: ", 2); // prompts for the shifting
-
-        int sftInput2 = sc.nextInt();
-
-        System.out.println();
-
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.println();
-        spacing("\"" + sftInput1 + "\" shifted by " + sftInput2 + " results in:"); // outputs shift results
-        System.out.println();
-        spacing(shiftCode(sftInput1, sftInput2));
-        System.out.println();
-
-        sc.nextLine();
-
-        pause(); // waits for keystroke
+        drShiftCode();
 
       }
 
       else if(choice == 3)
       {
 
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.println();
-        spacing("Welcome to the CryptoCode program!");
-        System.out.println();
-        spacing("Enter the text you would like to encode: ", 15); // prompts for text input
-
-        String cptInput = sc.nextLine();
-
-        System.out.println();
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.println();
-
-        key = shuffle(false); // shuffles alphabet and stores it in variable
-
-        spacing("The scrambled alphabet generated was: ");
-
-        System.out.println();
-
-        spacing(key); // tells user the code
-
-        System.out.println();
-
-        spacing("Using that to encode " + "\"" + cptInput + "\" results in:"); // outputs result
-
-        System.out.println();
-
-        spacing(cryptoCode(cptInput, key));
-
-        System.out.println();
-
-        pause(); // prompt for keystroke
-
-
+        drCryptoCode();
       }
 
       else if(choice == 4)
       {
 
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.println();
-        spacing("Welcome to the CryptoCode program!");
-        System.out.println();
-        spacing("Enter the text you would like to decode: ", 15); // prompts for text input
-
-        String dccInput = sc.nextLine();
-
-        System.out.println();
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.println();
-
-        spacing("What do you wish to use as your key?"); // asks for a key input
-        System.out.println();
-        spacing("1: Mr. Jay's Default Key");
-        spacing("2: The Key Currently in Memory");
-        spacing("3: Enter Your Own (As individual characters)");
-        spacing("4: Enter Your Own (As a single String)");
-        System.out.println();
-        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
-        System.out.println();
-        spacing("Choice: ", 1);
-
-        int dccChoice = sc.nextInt(); // takes in user's choice
-
-        System.out.println();
-
-        sc.nextLine();
-
-        if(dccChoice == 1) // if they want the default example key
-        {
-
-          key = "HOAZXJRTUYBIVEWKLSNCDMFGPQ" + ("HOAZXJRTUYBIVEWKLSNCDMFGPQ".toLowerCase()); // set up the key variable accordingly
-
-        }
-
-        // note: there is no if statement for 2, since 2 just grabs it from the memory; the only reason I have this line is to prevent 2 from triggering the else
-
-        else if(dccChoice == 2){}
-
-        else if(dccChoice == 3) // when the user inputs their own key manually through characters
-        {
-
-          String res = ""; // the final result that will be used
-          char loadIn; // the individual characters
-
-          for(int i = 0; i < 26; i++) // looping through the basic alphabet
-          {
-
-            spacing("What would you like the letter <" + (char)(i + 65) + "> to be? :", 1); // prompts for character
-
-            loadIn = sc.nextLine().charAt(0);
-
-            System.out.println();
-
-            while(alphabet(loadIn) == false) // character is checked to make sure it's part of the alphabet
-            {
-
-              System.out.println();
-              spacing("That was not a letter. Please try again."); // if it's not, program alerts user and makes them try again
-              spacing("What would you like the letter <" + (char)(i + 65) + "> to be? :", 1);
-
-              loadIn = sc.nextLine().charAt(0);
-
-              System.out.println();
-
-            }
-
-            res += loadIn; // loads the valid response into the res string
-            key = res.toUpperCase(); // key is the entire res portion converted to uppercase
-            res = key.toLowerCase(); // res is then set to the lowercase ver (to accomodate for both uppercase and lowercase)
-            key += res; // res is then concatenated to the end ofkey
-
-          }
-
-        }
-
-        else if(dccChoice == 4)
-        {
-
-          spacing("Enter your key: ");
-          System.out.println();
-          key = sc.nextLine(); // the assumption is that if the user's using this option, they have the key properly formatted
-          System.out.println();
-
-        }
-
-        else // anything that wasn't covered and isn't 2 is invalid
-        {
-
-          spacing("You have entered an invalid command.");
-          spacing("Program will decode your string with the current key.");
-          System.out.println();
-
-        }
-
-        spacing("Decoding your String with the following key: ");
-        spacing(key);
-        System.out.println();
-        spacing("Using that to encode " + "\"" + dccInput + "\" results in:");
-        System.out.println();
-        spacing(decodeCode(dccInput, key)); // output the results
-        System.out.println();
-
-        pause();
+        drDeCodeCode();
 
       }
 
