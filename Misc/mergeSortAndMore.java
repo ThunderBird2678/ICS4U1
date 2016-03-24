@@ -2,12 +2,13 @@
 
 // This would've been damn much easier in Python, I swear
 
-import java.util.Scanner;
+import java.util.*;
 
-public class mergeSort
+public class mergeSortAndMore
 {
   
   static Scanner sc; // Initalize the scanner object
+  static Random rn = new Random();
   
   public static void spacing( String printed ) // Custom method written in order to center - align output)
   {
@@ -273,6 +274,114 @@ public class mergeSort
     
   }
   
+  public static int search (int [] toSearch, int toFind, int lIndex, int rIndex)
+  {
+    
+    int mid = toSearch.length / 2;
+    
+    int res = (lIndex + mid) + 1;
+    
+    spacing("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("The current middle term is term #" + res + " of the original array.");
+    spacing("Which is term #" + (mid + 1) + " of the current level.");
+    System.out.println();
+    
+    if(toSearch[mid] == toFind)
+    {
+      
+      spacing("Base case: It equals what we're looking for: " + toFind);
+      System.out.println();
+      
+      return res;
+      
+    }
+    
+    else
+    {
+      
+      int [] nextStep = (toSearch.length % 2 == 0)? new int[mid] : new int[mid+1];
+      
+      if(toSearch[mid] > toFind) // if the middle element is already larger than what we want to find
+      {
+        
+        spacing("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing("The middle term is larger than what we're looking for.");
+        spacing("We must look to the left.");
+        
+        String nextStepOutput = "";
+        
+        for(int i = 0; i < nextStep.length; i++)
+        {
+          
+          nextStep[i] = toSearch[i];
+          nextStepOutput += (nextStep[i] + " ");
+          
+        }
+        
+        System.out.println();
+        spacing("The subarray we will be searching next is:");
+        spacing(nextStepOutput);
+        System.out.println();
+        spacing("The right bound is term #" + (nextStep.length));
+        spacing("The left bound is" + (lIndex+1));
+        System.out.println();
+        
+        return search(nextStep, toFind, lIndex, nextStep.length - 1);
+        
+      }
+      
+      else
+      {
+        
+        spacing("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing("The middle term is smaller than what we're looking for.");
+        spacing("We must look to the right.");
+        
+        String nextStepOutput = "";
+        
+        for(int i = 0; i < nextStep.length; i++)
+        {
+          
+          nextStep[i] = toSearch[mid + i];
+          nextStepOutput += (nextStep[i] + " ");
+          
+        }
+        
+        System.out.println();
+        spacing("The subarray we will be searching next is:");
+        spacing(nextStepOutput);
+        System.out.println();
+        spacing("The right bound is term #" + (rIndex + 1));
+        spacing("The left bound is term #" + (lIndex + mid + 1));
+        System.out.println();
+        
+        return search(nextStep, toFind, (lIndex + mid), rIndex);
+        
+      }
+      
+    }
+    
+  }
+  
+  public static int[] randomArray(int numTerms)
+  {
+    
+    int [] res = new int [numTerms];
+    
+    for(int i = 0; i < numTerms; i++)
+    {
+      
+      res [i] = rn.nextInt(99) + 1;
+      
+    }
+    
+    return res;
+    
+  }
+  
   public static void main (String [] args)
   {
     
@@ -289,6 +398,10 @@ public class mergeSort
     
     System.out.println();
     
+    toSort = randomArray(numTerms);
+    
+    /*
+    
     for(int i = 0; i < numTerms; i++) // loop through array, have user input the lists
     {
       spacing("Enter term number " + (i + 1) + ": ", 2);
@@ -298,6 +411,8 @@ public class mergeSort
       System.out.println();
       
     }
+    
+    */
     
     spacing("The original array prior to any sorting is as follows:"); // outputs original array based off a list
     
@@ -330,6 +445,16 @@ public class mergeSort
     
     spacing(result);
     System.out.println();
+    spacing("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("What number do you wish to search for?", 2);
+    
+    int search = sc.nextInt();
+    
+    int searchRes = search(res, search, 0, res.length - 1);
+    
+    System.out.println();
+    spacing(search + " was term #" + searchRes);
   
   }
   
