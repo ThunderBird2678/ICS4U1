@@ -104,6 +104,16 @@ public class ArrayTester
 
     arr.print();
 
+    arr.sort();
+
+    arr.print();
+
+    Array arr2 = arr.search('s');
+
+    arr2.sort();
+
+    arr2.print();
+
   }
 
 }

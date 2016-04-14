@@ -176,17 +176,49 @@ public class Array
 
   }
 
-  public String search(char letter)
+  public Array search (char letter)
   {
 
-    return "";
+    char letterUpper = Character.toUpperCase(letter);
+
+    Array res = new Array();
+
+    for(int i = 0; i < arr.length; i++)
+    {
+
+      char testerUpper = Character.toUpperCase(arr[i].charAt(0));
+
+      if(testerUpper == letterUpper)
+      {
+
+        res.add(arr[i]);
+
+      }
+
+    }
+
+    return res;
 
   }
 
-  public String search(String surname)
+  public Array search (String surname)
   {
 
-    return "";
+    Array res = new Array();
+
+    for(int i = 0; i < arr.length; i++)
+    {
+
+      if(arr[i].toUpperCase().equals(surname.toUpperCase()))
+      {
+
+        res.add(arr[i]);
+
+      }
+
+    }
+
+    return res;
 
   }
 
@@ -259,6 +291,53 @@ public class Array
         arr[i] = temp[i];
 
       }
+
+    }
+
+  }
+
+  public void sort()
+  {
+
+    String temp;
+
+    for (int i = 0 ; i < arr.length - 1 ; i++) // sort first length-1 values
+    {
+
+      int lowPos = i; // assume first value is lowest
+
+
+      for (int j = i + 1 ; j < arr.length ; j++) // check rest of list
+      {
+
+        int nameChar = 0;
+
+        if(!arr[j].equals(arr[lowPos]))
+        {
+
+          while(arr[j].charAt(nameChar) == arr [lowPos].charAt(nameChar))
+          {
+
+            nameChar ++;
+
+          }
+
+        }
+
+
+        if (arr[j].charAt(nameChar) < arr[lowPos].charAt(nameChar)) // if you find a lower value
+        {
+
+          lowPos = j; // keep track of lowest’s position
+
+        }
+
+      }
+
+      temp = arr [i]; // swap low value with value in its proper position
+
+      arr [i] = arr [lowPos];
+      arr [lowPos] = temp;
 
     }
 
