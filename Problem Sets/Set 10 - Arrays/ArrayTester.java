@@ -89,6 +89,7 @@ public class ArrayTester
     arr.enter();
 
     System.out.println();
+
     pause();
 
   }
@@ -97,6 +98,7 @@ public class ArrayTester
   {
 
     arr.print();
+
     pause();
 
   }
@@ -110,6 +112,9 @@ public class ArrayTester
     spacing("Search: ", 5);
 
     String searchFor = sc.nextLine();
+
+    System.out.println();
+    
     Array res = new Array();
 
     if(searchFor.length() == 1)
@@ -143,6 +148,53 @@ public class ArrayTester
     }
 
     System.out.println();
+
+    pause();
+
+  }
+
+  public static void drAdd()
+  {
+
+    spacing("Please enter a name in the format LastName, FirstName");
+    spacing("Name: ", 9);
+
+    String toAdd = sc.nextLine();
+
+    System.out.println();
+    arr.add(toAdd);
+    spacing("The name has been added.");
+    System.out.println();
+
+    pause();
+
+  }
+
+  public static void drRemove()
+  {
+
+    spacing("Please enter the number of the name you wish to remove.");
+    spacing("Number: ", 1);
+
+    int toRemove = sc.nextInt();
+
+    System.out.println();
+    arr.remove(toRemove);
+    spacing("The name has been removed.");
+    System.out.println();
+
+    pause();
+
+  }
+
+  public static void drSort()
+  {
+
+    spacing("Sorting the list...");
+    arr.sort();
+    spacing("The list has been sorted.");
+    System.out.println();
+
     pause();
 
   }
@@ -209,21 +261,21 @@ public class ArrayTester
       else if(choice == 4)
       {
 
-        // drAdd();
+        drAdd();
 
       }
 
       else if(choice == 5)
       {
 
-        // drRemove();
+        drRemove();
 
       }
 
       else if(choice == 6)
       {
 
-        // drSort();
+        drSort();
 
       }
 
