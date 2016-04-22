@@ -14,6 +14,7 @@ public class ArrayTester
 {
 
   public static Scanner sc;
+  public static Array arr = new Array();
 
   public static void spacing( String printed ) // Custom method written in order to center - align output)
   {
@@ -69,13 +70,89 @@ public class ArrayTester
 
   }
 
+  public static void pause() // Allows user keystroke before returning to menu after debug
+  {
+
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("Press the <Enter> key to return to the menu."); // prompt for a keystroke
+
+    sc.nextLine(); // take any keystroke
+
+    System.out.println();
+
+  }
+
+  public static void drEnter()
+  {
+
+    arr.enter();
+
+    System.out.println();
+    pause();
+
+  }
+
+  public static void drPrint()
+  {
+
+    arr.print();
+    pause();
+
+  }
+
+  public static void drSearch()
+  {
+
+    spacing("What would you like to search for?");
+    spacing("Enter the full last name or its first letter.");
+    System.out.println();
+    spacing("Search: ", 5);
+
+    String searchFor = sc.nextLine();
+    Array res = new Array();
+
+    if(searchFor.length() == 1)
+    {
+
+      char searchChar = searchFor.charAt(0);
+      res = arr.search(searchChar);
+
+      System.out.println();
+      spacing("The array of all matches is as follows:");
+      res.print();
+
+    }
+
+    else if(searchFor.length() < 1)
+    {
+
+      System.out.println();
+      spacing("Your input was invalid. ");
+      System.out.println();
+
+    }
+
+    else
+    {
+
+      res = arr.search(searchFor);
+      spacing("The array of all matches is as follows:");
+      res.print();
+
+    }
+
+    System.out.println();
+    pause();
+
+  }
+
   public static void main (String [] args) throws IOException
   {
 
     sc = new Scanner(System.in);
 
     int choice = 0;
-    Array arr = new Array();
 
     do // Looping through this
     {
@@ -111,21 +188,21 @@ public class ArrayTester
       if(choice == 1)
       {
 
-        // drEnter();
+        drEnter();
 
       }
 
       else if(choice == 2)
       {
 
-        // drPrint();
+        drPrint();
 
       }
 
       else if(choice == 3)
       {
 
-        // drSearch();
+        drSearch();
 
       }
 

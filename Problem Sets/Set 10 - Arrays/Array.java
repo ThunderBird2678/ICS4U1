@@ -130,8 +130,7 @@ public class Array
 
     while(done == false)
     {
-
-      spacing();
+      
       spacing("Please enter a name in the format:");
       spacing("LastName, FirstName");
       spacing("Enter q to quit");
@@ -161,7 +160,6 @@ public class Array
   public void print()
   {
 
-    spacing();
     spacing("Names:");
     spacing();
 
