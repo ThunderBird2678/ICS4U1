@@ -74,45 +74,100 @@ public class ArrayTester
 
     sc = new Scanner(System.in);
 
+    int choice = 0;
     Array arr = new Array();
 
-    arr.add("Smith, John");
-    arr.add("Huang, Kai");
-    arr.add("Ren, Kylo");
+    do // Looping through this
+    {
 
-    arr.print();
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      System.out.println();
+      spacing("Welcome to Problem Set 10 (Arrays)");
+      spacing("Kai Huang ~ 09/02/2016");
+      System.out.println();
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      System.out.println();
+      spacing("Choices");
+      System.out.println();
+      spacing("1: enter()");
+      spacing("2: print()");
+      spacing("3: search()");
+      spacing("4: add()");
+      spacing("5: remove()");
+      spacing("6: sort()");
+      System.out.println();
+      spacing("0: Exit");
+      System.out.println();
+      System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+      System.out.println();
+      spacing("Choice: ", 1);
 
-    arr.remove(2);
+      choice = sc.nextInt(); // Read user's choice
 
-    arr.print();
+      System.out.println();
 
-    arr.add("Cook, Tim");
-    arr.add("Tachibana, Kanade");
-    arr.add("Fucker, Mother");
+      sc.nextLine();
 
-    arr.print();
+      if(choice == 1)
+      {
 
-    arr.remove(3);
+        // drEnter();
 
-    arr.print();
+      }
 
-    arr.remove(3);
+      else if(choice == 2)
+      {
 
-    arr.print();
+        // drPrint();
 
-    arr.enter();
+      }
 
-    arr.print();
+      else if(choice == 3)
+      {
 
-    arr.sort();
+        // drSearch();
 
-    arr.print();
+      }
 
-    Array arr2 = arr.search('s');
+      else if(choice == 4)
+      {
 
-    arr2.sort();
+        // drAdd();
 
-    arr2.print();
+      }
+
+      else if(choice == 5)
+      {
+
+        // drRemove();
+
+      }
+
+      else if(choice == 6)
+      {
+
+        // drSort();
+
+      }
+
+      else if(choice != 0) // Failsafe; warns user if they've entered a command out of bounds
+      {
+
+        System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+        System.out.println();
+        spacing("Please enter a valid command.");
+        System.out.println();
+
+      }
+
+
+    } while (choice != 0); // Terminates if choice is 0
+
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
+    System.out.println();
+    spacing("Farewell, good sir."); // Termination message
+    System.out.println();
+    System.out.println("~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~");
 
   }
 
