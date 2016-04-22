@@ -131,7 +131,6 @@ public class Array
     while(done == false)
     {
 
-      spacing();
       spacing("Please enter a name in the format:");
       spacing("LastName, FirstName");
       spacing("Enter q to quit");
@@ -154,6 +153,8 @@ public class Array
 
       }
 
+      spacing();
+
     }
 
   }
@@ -161,7 +162,6 @@ public class Array
   public void print()
   {
 
-    spacing();
     spacing("Names:");
     spacing();
 
@@ -205,11 +205,16 @@ public class Array
   {
 
     Array res = new Array();
+    String searchTest;
 
     for(int i = 0; i < arr.length; i++)
     {
 
-      if(arr[i].toUpperCase().equals(surname.toUpperCase()))
+      searchTest = arr[i].toUpperCase();
+      int indexOfSplit = searchTest.indexOf(",");
+      String searching = searchTest.substring(0,indexOfSplit);
+
+      if(searching.equals(surname.toUpperCase()))
       {
 
         res.add(arr[i]);
