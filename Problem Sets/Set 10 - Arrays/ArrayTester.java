@@ -13,8 +13,8 @@ import java.util.Scanner;
 public class ArrayTester
 {
 
-  public static Scanner sc;
-  public static Array arr = new Array();
+  public static Scanner sc; // Set up Scanner Object
+  public static Array arr = new Array(); // Set up Array Object
 
   public static void spacing( String printed ) // Custom method written in order to center - align output)
   {
@@ -83,119 +83,117 @@ public class ArrayTester
 
   }
 
-  public static void drEnter()
+  public static void drEnter() // Driver Method for enter() Array Object Method
   {
 
-    arr.enter();
+    arr.enter(); // no parameters or instructions needed, simply call Method
 
-    System.out.println();
-
-    pause();
+    pause(); // wait for keystroke
 
   }
 
-  public static void drPrint()
+  public static void drPrint() // driver method for Array.print()
   {
 
-    arr.print();
+    arr.print(); // no parameters / instructions needed, simply call method
 
-    pause();
+    pause(); // wait for keystroke
 
   }
 
-  public static void drSearch()
+  public static void drSearch() // driver method for Array.search()
   {
 
     spacing("What would you like to search for?");
-    spacing("Enter the full last name or its first letter.");
+    spacing("Enter the full last name or its first letter."); // prompt for, recieve input
     System.out.println();
     spacing("Search: ", 5);
 
-    String searchFor = sc.nextLine();
+    String searchFor = sc.nextLine(); // sets it up as a string by default
 
     System.out.println();
-    
-    Array res = new Array();
 
-    if(searchFor.length() == 1)
+    Array res = new Array(); // Initalize a new array object for the solution
+
+    if(searchFor.length() == 1) // If the user entered simply a character
     {
 
-      char searchChar = searchFor.charAt(0);
+      char searchChar = searchFor.charAt(0); // convert the input into a character to be sent to array.search(char)
       res = arr.search(searchChar);
 
       System.out.println();
-      spacing("The array of all matches is as follows:");
-      res.print();
+      spacing("The array of all matches is as follows:"); // display result
+      res.print(); // use the array.print() method with the result array we created
 
     }
 
-    else if(searchFor.length() < 1)
+    else if(searchFor.length() < 1) // if the user did not enter anything
     {
 
       System.out.println();
-      spacing("Your input was invalid. ");
+      spacing("Your input was invalid. "); // tell them that their input does not work
       System.out.println();
 
     }
 
-    else
+    else // in any other case, the user entered the full last name
     {
 
-      res = arr.search(searchFor);
+      res = arr.search(searchFor); // run Array.search(String)
       spacing("The array of all matches is as follows:");
-      res.print();
+      res.print(); // display results
 
     }
 
     System.out.println();
 
-    pause();
+    pause(); // wait for keystroke
 
   }
 
-  public static void drAdd()
+  public static void drAdd() // driver for Array.add()
   {
 
-    spacing("Please enter a name in the format LastName, FirstName");
+    spacing("Please enter a name in the format LastName, FirstName"); // Tell them the format and prompt for input
     spacing("Name: ", 9);
 
-    String toAdd = sc.nextLine();
+    String toAdd = sc.nextLine(); // read the input
 
     System.out.println();
-    arr.add(toAdd);
-    spacing("The name has been added.");
+    arr.add(toAdd); // and add it to the array
+    spacing("The name has been added."); // tell user operation has been performed
     System.out.println();
 
-    pause();
+    pause(); // wait for keystroke
 
   }
 
-  public static void drRemove()
+  public static void drRemove() // driver method for Array.rermove()
   {
 
-    spacing("Please enter the number of the name you wish to remove.");
+    spacing("Please enter the number of the name you wish to remove."); // tell them the format and prompt for input
     spacing("Number: ", 1);
 
-    int toRemove = sc.nextInt();
+    int toRemove = sc.nextInt(); // read the input
 
     System.out.println();
-    arr.remove(toRemove);
-    spacing("The name has been removed.");
+    arr.remove(toRemove); // and based off that, remove the corresponding element from the Array
+    spacing("The name has been removed."); // tell user operation has been performed
     System.out.println();
 
-    pause();
+    pause(); // wait for keystroke
 
   }
 
-  public static void drSort()
+  public static void drSort() // driver method for sort()
   {
 
-    spacing("Sorting the list...");
+    spacing("Sorting the list..."); // telling user what's going on
     arr.sort();
-    spacing("The list has been sorted.");
+    spacing("The list has been sorted."); // essentially returning a success flag
     System.out.println();
 
-    pause();
+    pause(); // wait for keystroke
 
   }
 
@@ -237,7 +235,7 @@ public class ArrayTester
 
       sc.nextLine();
 
-      if(choice == 1)
+      if(choice == 1) // A whole bunch of choices
       {
 
         drEnter();
